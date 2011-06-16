@@ -1,0 +1,19 @@
+SocietyCraft - A Bukkit plugin.
+Authors: cskiwi, thisisboris.
+
+Somewhere mid 2011 I started playing minecraft actively online with a couple of friends. 
+Since I had an old desktop PC I decided to host a small server using a few Plugins. Sometime later we changed the look of our
+server, different plugins, survival/adventure mode with NPC's, Towns, Nations, Wars, which lead to issues. It's hard to maintain and
+update Plugins, especially with the BukkitChanges, and with plugins no longer being updated, or even with Devs being just plain rude and 
+annoying, which leads to stepping away from a certain plugin.
+
+So we decided it was time to learn a new programming language, Java, and learn how to make a decent Bukkit plugin. 
+This will be our first Plugin, and we'll be actively testing the plugin. A lot. It'll introduce an advanced Nation/region/town system, 
+with easy to set up houses, churches, libraries and so forth. Empty houses will be bought by NPCs after sometime, who do jobs in a jobs system.
+This jobs system will also be available for the player, so that he can pay the taxes of the town, buy a house, and trade with both Players as NPC's
+that trade.
+
+It will require lot's of time and Cola/Energy drinks, pizzas and others , but at least we'll have a stable plugin, that adds everything
+an Adventure/RPG server would need to function. With devs who ARE friendly!
+
+Thisisboris - Thursday 16th of June, 2011

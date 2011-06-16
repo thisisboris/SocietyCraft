@@ -17,9 +17,15 @@ import org.bukkit.plugin.PluginManager;
 public class SocietyCraft extends JavaPlugin {
 	private final SCPlayerListener playerListener = new SCPlayerListener(this);
     private final SCBlockListener blockListener = new SCBlockListener(this);
-    private final HashMap<Player, Boolean> debugees = new HashMap<Player, Boolean>();
     private final SCPluginListener pluginListener = new SCPluginListener(this);
-	
+    private final CommandManager commandManager = new CommandManager(this);
+	private final HashMap<Player, Boolean> debugees = new HashMap<Player, Boolean>();
+	public static String name;
+    public static String version;
+    private static boolean debugging;
+    
+    // Methods
+    
     public void onDisable() {
     	
         // TODO: Place any custom disable code here

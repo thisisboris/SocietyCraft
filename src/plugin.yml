@@ -1,0 +1,11 @@
+name: SocietyCraft
+main: thisisboris.SocietyCraft.SocietyCraft
+version: 0.0
+
+commands:
+    SocietyCraft:
+        description: Basic command to access help
+        usage: /SocietyCraft, /SC, /sc, /societycraft
+    SocietyAdmin:
+        description: Admin SocietyCraft
+        usage: /SocAdmin, /socadmin, /sca

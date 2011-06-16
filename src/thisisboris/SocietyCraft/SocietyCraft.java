@@ -8,6 +8,9 @@ import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.PluginManager;
 
+import thisisboris.SocietyCraft.includes.CommandManager;
+
+
 /**
  * SocietyCraft - A world enhancing plugin for Bukkit
  *

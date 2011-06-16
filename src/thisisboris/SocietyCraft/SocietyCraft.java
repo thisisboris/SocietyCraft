@@ -44,8 +44,8 @@ public class SocietyCraft extends JavaPlugin {
         pm.registerEvent(Event.Type.BLOCK_CANBUILD, blockListener, Priority.Normal, this);
 
         // Register our commands
-        getCommand("SocietyCraft").setExecutor(new SCSocietyCraftCommand(this));
-        getCommand("SocietyAdmin").setExecutor(new SCSocietyAdminCommand(this));
+        // getCommand("SocietyCraft").setExecutor(new SCSocietyCraftCommand(this));
+        // getCommand("SocietyAdmin").setExecutor(new SCSocietyAdminCommand(this));
 
         // EXAMPLE: Custom code, here we just output some info so we can check all is well
         PluginDescriptionFile pdfFile = this.getDescription();

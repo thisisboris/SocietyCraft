@@ -1,6 +1,13 @@
 package thisisboris.SocietyCraft;
 
+import java.util.List;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Logger;
+
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event.Priority;
 import org.bukkit.event.Event;
@@ -9,6 +16,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.PluginManager;
 
 import thisisboris.SocietyCraft.includes.CommandManager;
+import thisisboris.SocietyCraft.includes.SCLogger;
+import thisisboris.SocietyCraft.commands.SocietyCraftcmd;
 
 
 /**
@@ -22,27 +31,19 @@ public class SocietyCraft extends JavaPlugin {
     private final SCBlockListener blockListener = new SCBlockListener(this);
     private final SCPluginListener pluginListener = new SCPluginListener(this);
     private final CommandManager commandManager = new CommandManager(this);
-	private final HashMap<Player, Boolean> debugees = new HashMap<Player, Boolean>();
+    private final List<Player> debugees = new ArrayList<Player>();
 	public static String name;
     public static String version;
     private static boolean debugging;
     
     // Methods
-    
-    public void onDisable() {
-    	
-        // TODO: Place any custom disable code here
 
-        // NOTE: All registered events are automatically unregistered when a plugin is disabled
-
-        // EXAMPLE: Custom code, here we just output some info so we can check all is well
-        System.out.println("Goodbye world!");
-    }
     
     public void onEnable() {
         // TODO: Place any custom enable code here including the registration of any events
 
-    	System.out.println("[SocietyCraft] - Initialized");
+    	SCLogger.initialize(Logger.getLogger("Minecraft"));
+    	SCLogger.info(name + " version " + version + " is enabled!");
     	
         // Register our events
         PluginManager pm = getServer().getPluginManager();
@@ -53,24 +54,101 @@ public class SocietyCraft extends JavaPlugin {
         pm.registerEvent(Event.Type.BLOCK_CANBUILD, blockListener, Priority.Normal, this);
 
         // Register our commands
-        // getCommand("SocietyCraft").setExecutor(new SCSocietyCraftCommand(this));
-        // getCommand("SocietyAdmin").setExecutor(new SCSocietyAdminCommand(this));
+        
+        setupCommands();
 
         // EXAMPLE: Custom code, here we just output some info so we can check all is well
         PluginDescriptionFile pdfFile = this.getDescription();
         System.out.println( pdfFile.getName() + " version " + pdfFile.getVersion() + " is enabled!" );
     }
     
-    public boolean isDebugging(final Player player) {
-        if (debugees.containsKey(player)) {
-            return debugees.get(player);
-        } else {
-            return false;
-        }
+    /*
+     * Sets up the core commands of the plugin.
+     */
+    private void setupCommands() {
+        // Add command labels here.
+        // For example in "/template version" and "/template reload" the label for both is "template".
+        // Make your commands in the template.commands package. Each command is a separate class.
+        addCommand("/SocietyCraft", new SocietyCraftcmd(this));
+        addCommand("/SC", new SocietyCraftcmd(this));
+        addCommand("/sc", new SocietyCraftcmd(this));
+        
     }
 
-    public void setDebugging(final Player player, final boolean value) {
-        debugees.put(player, value);
+    /*
+     * Executes a command when a command event is received.
+     * 
+     * @param sender    The thing that sent the command.
+     * @param cmd       The complete command object.
+     * @param label     The label of the command.
+     * @param args      The arguments of the command.
+     */
+    @Override
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        return commandManager.dispatch(sender, cmd, label, args);
+    }
+
+    /*
+     * Adds the specified command to the command manager and server.
+     * 
+     * @param command   The label of the command.
+     * @param executor  The command class that excecutes the command.
+     */
+    private void addCommand(String command, CommandExecutor executor) {
+        getCommand(command).setExecutor(executor);
+        commandManager.addCommand(command, executor);
+    }
+
+    /*
+     * This method runs when the plugin is disabling.
+     */
+    @Override
+    public void onDisable() {
+        //TDatabase.disable();
+
+    	SCLogger.info(name + " DISABLED! ");
+    	
+    }
+    
+    /*
+     * Checks is the plugin is in debug mode.
+     */
+    public boolean inDebugMode(){
+        return !debugees.isEmpty() || debugging;
+    }
+
+    /*
+     * Checks if a player is in debug mode.
+     * 
+     * @param player    The player to check.
+     */
+    public boolean isDebugging(final Player player) {
+        return debugees.contains(player);
+    }
+
+    /*
+     * Sets a players debug mode.
+     * 
+     * @param player    The player to set the debug mode of.
+     */
+    public void startDebugging(final Player player) {
+        debugees.add(player);
+    }
+    
+    public void startDebugging() {
+        debugging = true;
+    }
+    
+    public void stopDebugging(final Player player) {
+        debugees.remove(player);
+    }
+    
+    public void stopDebugging() {
+        for(Player player : debugees) {
+            player.sendMessage("You are no longer in debug mode.");
+        }
+        debugees.clear();
+        debugging = false;
     }
     
 }

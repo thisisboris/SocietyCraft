@@ -2,7 +2,6 @@ package thisisboris.SocietyCraft;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.logging.Logger;
 
 import org.bukkit.command.Command;
@@ -11,7 +10,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event.Priority;
 import org.bukkit.event.Event;
-import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.PluginManager;
 
@@ -29,7 +27,6 @@ import thisisboris.SocietyCraft.commands.SocietyCraftcmd;
 public class SocietyCraft extends JavaPlugin {
 	private final SCPlayerListener playerListener = new SCPlayerListener(this);
     private final SCBlockListener blockListener = new SCBlockListener(this);
-    private final SCPluginListener pluginListener = new SCPluginListener(this);
     private final CommandManager commandManager = new CommandManager(this);
     private final List<Player> debugees = new ArrayList<Player>();
 	public static String name;
@@ -41,9 +38,10 @@ public class SocietyCraft extends JavaPlugin {
     
     public void onEnable() {
         // TODO: Place any custom enable code here including the registration of any events
-
+    	name = this.getDescription().getName();
+        version = this.getDescription().getVersion();
+        
     	SCLogger.initialize(Logger.getLogger("Minecraft"));
-    	SCLogger.info(name + " version " + version + " is enabled!");
     	
         // Register our events
         PluginManager pm = getServer().getPluginManager();
@@ -54,12 +52,14 @@ public class SocietyCraft extends JavaPlugin {
         pm.registerEvent(Event.Type.BLOCK_CANBUILD, blockListener, Priority.Normal, this);
 
         // Register our commands
-        
+        SCLogger.info("Setting command");
         setupCommands();
 
         // EXAMPLE: Custom code, here we just output some info so we can check all is well
-        PluginDescriptionFile pdfFile = this.getDescription();
-        System.out.println( pdfFile.getName() + " version " + pdfFile.getVersion() + " is enabled!" );
+        // PluginDescriptionFile pdfFile = this.getDescription();
+        // System.out.println( pdfFile.getName() + " version " + pdfFile.getVersion() + " is enabled!" );
+        // you can uuse above or below for console output, prefered by MC below
+        SCLogger.info(name + " version " + version + " is enabled!");
     }
     
     /*
@@ -69,6 +69,7 @@ public class SocietyCraft extends JavaPlugin {
         // Add command labels here.
         // For example in "/template version" and "/template reload" the label for both is "template".
         // Make your commands in the template.commands package. Each command is a separate class.
+    	SCLogger.info("Adding command");
         addCommand("SocietyCraft", new SocietyCraftcmd(this));
         addCommand("SC", new SocietyCraftcmd(this));
         addCommand("sc", new SocietyCraftcmd(this));

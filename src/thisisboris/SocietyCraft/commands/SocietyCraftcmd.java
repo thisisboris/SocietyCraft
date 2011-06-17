@@ -44,7 +44,14 @@ public class SocietyCraftcmd implements CommandExecutor {
         	else {
         		if (is(args[0],"Help")){
         			handled = true;
-        			String message = colorizeText("[SocietyCraft]", ChatColor.YELLOW)+ "Help pages:";
+        			String message = colorizeText("[SocietyCraft] ", ChatColor.YELLOW)+ "Help pages:";
+        			if (sendMessage(sender, message))
+        			{
+        				// Function that should be executed upon command.
+        			}
+        		} else if (is(args[0],"Admin") && getPlayer(sender).isOp()){
+        			handled = true;
+        			String message = colorizeText("[SocietyCraft] ", ChatColor.YELLOW)+ "Help pages:";
         			if (sendMessage(sender, message))
         			{
         				// Function that should be executed upon command.
@@ -85,9 +92,6 @@ public class SocietyCraftcmd implements CommandExecutor {
         return sent;
     }
     
-    /*
-     * Setted to Commend because no use of it
-
     // Checks if the current user is actually a player and returns the name of that player.
     private String getName(CommandSender sender) {
         String name = "";
@@ -106,7 +110,6 @@ public class SocietyCraftcmd implements CommandExecutor {
         }
         return player;
     }
-     */
     private String colorizeText(String text, ChatColor color) {
         return color + text + ChatColor.WHITE;
     }

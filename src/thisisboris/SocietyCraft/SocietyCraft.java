@@ -52,7 +52,6 @@ public class SocietyCraft extends JavaPlugin {
         pm.registerEvent(Event.Type.BLOCK_CANBUILD, blockListener, Priority.Normal, this);
 
         // Register our commands
-        SCLogger.info("Setting command");
         setupCommands();
 
         // EXAMPLE: Custom code, here we just output some info so we can check all is well
@@ -69,10 +68,7 @@ public class SocietyCraft extends JavaPlugin {
         // Add command labels here.
         // For example in "/template version" and "/template reload" the label for both is "template".
         // Make your commands in the template.commands package. Each command is a separate class.
-    	SCLogger.info("Adding command");
         addCommand("SocietyCraft", new SocietyCraftcmd(this));
-        addCommand("SC", new SocietyCraftcmd(this));
-        addCommand("sc", new SocietyCraftcmd(this));
         
     }
 

@@ -69,9 +69,9 @@ public class SocietyCraft extends JavaPlugin {
         // Add command labels here.
         // For example in "/template version" and "/template reload" the label for both is "template".
         // Make your commands in the template.commands package. Each command is a separate class.
-        addCommand("/SocietyCraft", new SocietyCraftcmd(this));
-        addCommand("/SC", new SocietyCraftcmd(this));
-        addCommand("/sc", new SocietyCraftcmd(this));
+        addCommand("SocietyCraft", new SocietyCraftcmd(this));
+        addCommand("SC", new SocietyCraftcmd(this));
+        addCommand("sc", new SocietyCraftcmd(this));
         
     }
 

@@ -11,7 +11,7 @@ public class SCLogger {
 	public static void initialize(Logger newLog) {
 		
 		SCLogger.log = newLog;
-		prefix = "[SocietyCraft]";
+		prefix = "[SocietyCraft] - ";
 		
 	}
 	

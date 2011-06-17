@@ -23,12 +23,33 @@ public class SocietyCraftcmd implements CommandExecutor {
     private final SocietyCraft plugin;
 
     public SocietyCraftcmd(SocietyCraft instance) {
+    	
         plugin = instance;
+        
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         boolean handled = false;
+        
+        if (is(label, "SocietyCraft") || is(label, "SC")) {
+        	
+        	String message = "[SocietyCraft] - Command by Player";
+        	
+        	if (sendMessage(sender, message)) {
+        		
+        		// Function that should be executed upon command.
+        		
+        	} else {
+        		
+        		message = "Command by Server";
+        		
+        		// Not a player, not sent to player
+        		
+        		sendLog(sender, message);
+        		        		
+        	}
+        }
         
         return handled;
     }

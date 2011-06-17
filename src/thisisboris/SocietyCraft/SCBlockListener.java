@@ -1,6 +1,7 @@
 package thisisboris.SocietyCraft;
 
 import org.bukkit.entity.Player;
+import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.block.BlockListener;
 import org.bukkit.event.block.SignChangeEvent;
 
@@ -22,8 +23,8 @@ public class SCBlockListener extends BlockListener {
         Player player = event.getPlayer();
     }
 //    
-//    public void onBlockDamage(BlockDamageEvent event) {
-//    }
+    public void onBlockDamage(BlockDamageEvent event) {
+   }
 //
 //    public void onBlockCanBuild(BlockCanBuildEvent event) {
 //    }

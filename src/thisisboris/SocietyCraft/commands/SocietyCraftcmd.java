@@ -1,7 +1,5 @@
 package thisisboris.SocietyCraft.commands;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -16,10 +14,12 @@ import thisisboris.SocietyCraft.includes.SCLogger;
 
 /**
  * @description Handles a command.
- * @author Thisisboris && cskiwi
+ * @authors Thisisboris and cskiwi
  */
 public class SocietyCraftcmd implements CommandExecutor {
+	
     private final SocietyCraft plugin;
+    
     public SocietyCraftcmd(SocietyCraft instance) {
         plugin = instance;
     }
@@ -30,6 +30,7 @@ public class SocietyCraftcmd implements CommandExecutor {
         if (is(label, "SocietyCraft") || is(label, "SC") || is(label, "sc")) {
         	// if there are no arguments
         	if (args == null || args.length == 0){
+        		handled = true;
         		String message = "[SocietyCraft] - Command by Player";
             	if (sendMessage(sender, message)) {
             		// Function that should be executed upon command.
@@ -42,7 +43,8 @@ public class SocietyCraftcmd implements CommandExecutor {
         	// if there are arguments after /sc , ...
         	else {
         		if (is(args[0],"Help")){
-        			String message = "[SocietyCraft] - Help pages:";
+        			handled = true;
+        			String message = colorizeText("[SocietyCraft]", ChatColor.YELLOW)+ "Help pages:";
         			if (sendMessage(sender, message))
         			{
         				// Function that should be executed upon command.
@@ -82,6 +84,9 @@ public class SocietyCraftcmd implements CommandExecutor {
         }
         return sent;
     }
+    
+    /*
+     * Setted to Commend because no use of it
 
     // Checks if the current user is actually a player and returns the name of that player.
     private String getName(CommandSender sender) {
@@ -101,7 +106,7 @@ public class SocietyCraftcmd implements CommandExecutor {
         }
         return player;
     }
-
+     */
     private String colorizeText(String text, ChatColor color) {
         return color + text + ChatColor.WHITE;
     }

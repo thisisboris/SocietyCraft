@@ -96,7 +96,9 @@ public class SocietyCraft extends JavaPlugin {
      * @param executor  The command class that excecutes the command.
      */
     private void addCommand(String command, CommandExecutor executor) {
+    	// Getcommand.SetExectutor gives the error!
         getCommand(command).setExecutor(executor);
+        // Error is outputted before here!
         commandManager.addCommand(command, executor);
     }
 

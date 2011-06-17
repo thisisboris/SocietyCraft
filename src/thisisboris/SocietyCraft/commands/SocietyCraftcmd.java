@@ -16,7 +16,7 @@ import thisisboris.SocietyCraft.includes.SCLogger;
 
 /**
  * @description Handles a command.
- * @author Thisisboris
+ * @author Thisisboris && cskiwi
  */
 public class SocietyCraftcmd implements CommandExecutor {
     private final SocietyCraft plugin;
@@ -27,15 +27,27 @@ public class SocietyCraftcmd implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         boolean handled = false;
-        //if is a registerd label
-        if (is(label, "SocietyCraft") || is(label, "SC") || is(label, "sc")) {	
-        	String message = "[SocietyCraft] - Command by Player";
-        	if (sendMessage(sender, message)) {
-        		// Function that should be executed upon command.
-        	} else {
-        		message = "Command by Server";
-        		// Not a player, not sent to player
-        		sendLog(sender, message);    		        		
+        if (is(label, "SocietyCraft") || is(label, "SC") || is(label, "sc")) {
+        	// if there are no arguments
+        	if (args == null || args.length == 0){
+        		String message = "[SocietyCraft] - Command by Player";
+            	if (sendMessage(sender, message)) {
+            		// Function that should be executed upon command.
+            	} else {
+            		message = "Command by Server";
+            		// Not a player, not sent to player
+            		sendLog(sender, message);    		        		
+            	}
+        	}
+        	// if there are arguments after /sc , ...
+        	else {
+        		if (is(args[0],"Help")){
+        			String message = "[SocietyCraft] - Help pages:";
+        			if (sendMessage(sender, message))
+        			{
+        				// Function that should be executed upon command.
+        			}
+        		}
         	}
         }
         return handled;

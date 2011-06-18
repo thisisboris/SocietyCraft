@@ -5,7 +5,12 @@ version: 0.0.1
 commands:
     SocietyCraft:
         description: Basic command to access help
-        usage: /SocietyCraft, /SC, /sc, /societycraft
+        usage: |
+    SC:
+    	description: Basic command to acces help, short version
+    	usage: |
     SocietyAdmin:
-        description: Admin SocietyCraft
-        usage: /SocAdmin, /socadmin, /sca
+        description: Societycraft admin commands.
+        usage: |
+    SA:
+    	description: Societycraft admin commands, short version

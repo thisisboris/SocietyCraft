@@ -35,7 +35,6 @@ public class SocietyCraft extends JavaPlugin {
     private static boolean debugging;
     
     // Methods
-
     
     public void onEnable() {
    

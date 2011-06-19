@@ -1,11 +1,12 @@
-package thisisboris.SocietyCraft.includes;
+package be.thisisboris.SocietyCraft.includes;
 
 import java.util.Hashtable;
 import java.util.Map;
-import thisisboris.SocietyCraft.SocietyCraft;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+
+import be.thisisboris.SocietyCraft.SocietyCraft;
 
 /**
  *

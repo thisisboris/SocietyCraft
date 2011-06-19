@@ -1,4 +1,4 @@
-package thisisboris.SocietyCraft;
+package be.thisisboris.SocietyCraft;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -13,9 +13,10 @@ import org.bukkit.event.Event;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.PluginManager;
 
-import thisisboris.SocietyCraft.includes.CommandManager;
-import thisisboris.SocietyCraft.includes.SCLogger;
-import thisisboris.SocietyCraft.commands.SocietyCraftcmd;
+import be.thisisboris.SocietyCraft.commands.SocietyCraftcmd;
+import be.thisisboris.SocietyCraft.includes.CommandManager;
+import be.thisisboris.SocietyCraft.includes.SCLogger;
+
 
 
 /**
@@ -37,27 +38,43 @@ public class SocietyCraft extends JavaPlugin {
 
     
     public void onEnable() {
-        // TODO: Place any custom enable code here including the registration of any events
-    	name = this.getDescription().getName();
-        version = this.getDescription().getVersion();
+   
+    	name = "[SOCIETYCRAFT] ";
+        version = "0.0.1";
         
     	SCLogger.initialize(Logger.getLogger("Minecraft"));
-    	
-        // Register our events
         PluginManager pm = getServer().getPluginManager();
+        
         pm.registerEvent(Event.Type.PLAYER_JOIN, playerListener, Priority.Normal, this);
         pm.registerEvent(Event.Type.PLAYER_QUIT, playerListener, Priority.Normal, this);
         pm.registerEvent(Event.Type.PLAYER_MOVE, playerListener, Priority.Normal, this);
-        pm.registerEvent(Event.Type.BLOCK_PHYSICS, blockListener, Priority.Normal, this);
         pm.registerEvent(Event.Type.BLOCK_CANBUILD, blockListener, Priority.Normal, this);
+        pm.registerEvent(Event.Type.BLOCK_PLACE, playerListener, Priority.Normal, this);
+        /*
+         * I'll be working on a way give an AI to certain NPC's and NPE's. Listening to the chat
+         * will be part of this. Example: If a player approaches a NPC, the NOC speaks to him in 
+         * a way the player can answer. A guide would react like this:
+         * 
+         * Hello can I help you?
+         * Player: Yes
+         * Tell me the topic!
+         * Player: Housing.
+         * [HOUSING HELP]
+         * 
+         * or
+         * 
+         * Hello can I help you?
+         * Player: No.
+         * Okay, have a nice day!
+         * 
+         */
+        
+        pm.registerEvent(Event.Type.PLAYER_CHAT, playerListener, Priority.Normal, this);
+        pm.registerEvent(Event.Type.PLAYER_INTERACT_ENTITY, playerListener, Priority.Normal, this);
 
         // Register our commands
         setupCommands();
 
-        // EXAMPLE: Custom code, here we just output some info so we can check all is well
-        // PluginDescriptionFile pdfFile = this.getDescription();
-        // System.out.println( pdfFile.getName() + " version " + pdfFile.getVersion() + " is enabled!" );
-        // you can uuse above or below for console output, prefered by MC below
         SCLogger.info(name + " version " + version + " is enabled!");
     }
     
@@ -65,10 +82,11 @@ public class SocietyCraft extends JavaPlugin {
      * Sets up the core commands of the plugin.
      */
     private void setupCommands() {
-        // Add command labels here.
-        // For example in "/template version" and "/template reload" the label for both is "template".
-        // Make your commands in the template.commands package. Each command is a separate class.
+
         addCommand("SocietyCraft", new SocietyCraftcmd(this));
+        addCommand("SC", new SocietyCraftcmd(this));
+        addCommand("SocietyAdmin", new SocietyCraftcmd(this));
+        addCommand("SA", new SocietyCraftcmd(this));
         
     }
 
@@ -92,9 +110,7 @@ public class SocietyCraft extends JavaPlugin {
      * @param executor  The command class that excecutes the command.
      */
     private void addCommand(String command, CommandExecutor executor) {
-    	// Getcommand.SetExectutor gives the error!
         getCommand(command).setExecutor(executor);
-        // Error is outputted before here!
         commandManager.addCommand(command, executor);
     }
 
@@ -104,8 +120,11 @@ public class SocietyCraft extends JavaPlugin {
     @Override
     public void onDisable() {
         //TDatabase.disable();
-
-    	SCLogger.info(name + " DISABLED! ");
+    	
+    	/* 
+    	 * TODO: Save everything! 
+    	 */
+    	SCLogger.info(name + "has succesfully been disabled!");
     	
     }
     

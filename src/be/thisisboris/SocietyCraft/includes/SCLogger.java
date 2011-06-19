@@ -1,4 +1,4 @@
-package thisisboris.SocietyCraft.includes;
+package be.thisisboris.SocietyCraft.includes;
 
 	import java.util.logging.Level;
 	import java.util.logging.Logger;

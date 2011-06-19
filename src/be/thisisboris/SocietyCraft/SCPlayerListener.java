@@ -1,4 +1,4 @@
-package thisisboris.SocietyCraft;
+package be.thisisboris.SocietyCraft;
 
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerKickEvent;

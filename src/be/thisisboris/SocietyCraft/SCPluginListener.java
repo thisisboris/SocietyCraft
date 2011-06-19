@@ -1,4 +1,4 @@
-package thisisboris.SocietyCraft;
+package be.thisisboris.SocietyCraft;
 
 import org.bukkit.event.server.PluginDisableEvent;
 import org.bukkit.event.server.PluginEnableEvent;

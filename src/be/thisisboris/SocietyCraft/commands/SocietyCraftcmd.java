@@ -1,4 +1,4 @@
-package thisisboris.SocietyCraft.commands;
+package be.thisisboris.SocietyCraft.commands;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -6,20 +6,21 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import thisisboris.SocietyCraft.SocietyCraft;
-import thisisboris.SocietyCraft.includes.SCLogger;
+import be.thisisboris.SocietyCraft.SocietyCraft;
+import be.thisisboris.SocietyCraft.includes.SCLogger;
 
 
-//import thisisboris.SocietyCraft.includes.DataManager;
+
+//import be.thisisboris.SocietyCraft.includes.DataManager;
 
 /**
- * @description Handles a command.
+ * @description Handles commands.
  * @authors Thisisboris and cskiwi
  */
 public class SocietyCraftcmd implements CommandExecutor {
 	
     private final SocietyCraft plugin;
-    
+        
     public SocietyCraftcmd(SocietyCraft instance) {
         plugin = instance;
     }
@@ -27,36 +28,78 @@ public class SocietyCraftcmd implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         boolean handled = false;
-        if (is(label, "SocietyCraft") || is(label, "SC") || is(label, "sc")) {
-        	// if there are no arguments
-        	if (args == null || args.length == 0){
-        		handled = true;
-        		String message = "[SocietyCraft] - Command by Player";
-            	if (sendMessage(sender, message)) {
-            		// Function that should be executed upon command.
-            	} else {
-            		message = "Command by Server";
-            		// Not a player, not sent to player
-            		sendLog(sender, message);    		        		
-            	}
-        	}
-        	// if there are arguments after /sc , ...
-        	else {
-        		if (is(args[0],"Help")){
+        String prefix = colorizeText("[SocietyCraft] - ", ChatColor.GOLD);
+        String message;
+        if (is(label, "SocietyCraft") || is(label, "SC")) {
+        	
+        		/* 
+        		 * When a user with permissions, which we still have to implement, 
+        		 * types /sc or /societycraft he gets an overview of all the help
+        		 * sections there are in Societycraft.
+        		 * 
+        		 * If the terminal executes this command, he should get the statistics
+				 * of the current Society. 
+				 * 
+				 * That's logic!
+        		 *
+        		 */
+
+        	if (args == null || args.length == 0 || is(args[0],"Help")){
+        		        		
+        		if (isPlayer(sender)){
+        			
+        			message = prefix.concat("[HELP]");
+        			
+        			sendMessage(sender, message);
         			handled = true;
-        			String message = colorizeText("[SocietyCraft] ", ChatColor.YELLOW)+ "Help pages:";
-        			if (sendMessage(sender, message))
-        			{
-        				// Function that should be executed upon command.
-        			}
-        		} else if (is(args[0],"Admin") && getPlayer(sender).isOp()){
+        			
+        		} else {
+        			
+        			message = prefix.concat("Prepare for statistics dump");
+        			
+        			sendLog(sender, message);
         			handled = true;
-        			String message = colorizeText("[SocietyCraft] ", ChatColor.YELLOW)+ "Help pages:";
-        			if (sendMessage(sender, message))
-        			{
-        				// Function that should be executed upon command.
-        			}
+        			
         		}
+        		        		
+        	}
+        	
+        		/*
+        		 * Since these basic commands display help pages, and we have a lot
+        		 * of help pages, we should check if there are any arguments behind
+        		 * the command. Which will tell the plugin what help page the user
+        		 * wants to see.
+        		 * 
+        		 * If the terminal executes this, different statistics will be displayed.
+        		 * For example:
+        		 * 
+        		 * /sc town will display help for a town to a user, but for the terminal this
+        		 * will return statistics about all towns there are in the world.
+        		 * 
+        		 * That's logic!
+        		 * 
+        		 */
+        	
+        	else if (is(args[0],"Nation")) {
+        		
+        		
+        
+        	} else if (is(args[0],"Town")) {
+        		
+        		
+        		
+        	} else if (is(args[0],"Citizen")) {
+        		
+        		
+        		
+        	} else if (is(args[0],"Jobs")) {
+        		
+        		
+        		
+        	} else if (is(args[0],"")) {
+        		
+        		
+        		
         	}
         }
         return handled;

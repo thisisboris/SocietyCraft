@@ -2,8 +2,12 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="lib" path="libs/craftbukkit-0.0.1-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="libs/iConomy5.jar"/>
 	<classpathentry kind="lib" path="libs/Permissions.jar"/>
+	<classpathentry kind="lib" path="C:/Users/boris/workspace/SocietyCraft/libs/BOSEconomy.jar"/>
+	<classpathentry kind="lib" path="C:/Users/boris/workspace/SocietyCraft/libs/craftbukkit-0.0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="C:/Users/boris/workspace/SocietyCraft/libs/Essentials.jar"/>
+	<classpathentry kind="lib" path="C:/Users/boris/workspace/SocietyCraft/libs/iCo4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/boris/workspace/SocietyCraft/libs/iCo5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/boris/workspace/SocietyCraft/libs/Permissions.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

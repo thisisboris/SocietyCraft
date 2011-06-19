@@ -1,4 +1,4 @@
-package thisisboris.SocietyCraft;
+package be.thisisboris.SocietyCraft;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockDamageEvent;

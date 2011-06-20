@@ -1,4 +1,4 @@
-package be.thisisboris.SocietyCraft.World;
+package be.thisisboris.SocietyCraft.World.Nation;
 
 import java.util.List;
 

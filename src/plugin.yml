@@ -1,20 +1,19 @@
 name: SocietyCraft
-main: thisisboris.SocietyCraft.SocietyCraft
+main: be.thisisboris.SocietyCraft.SocietyCraft
 version: 0.0.1
-authors: cskiwi, thisisboris
+authors: [cskiwi, thisisboris]
 description: After a couple of months of hosting a bukkit server, we decided to create our very own plugin, based upon the way we play minecraft.
-softdepend: iConomy, Permissions
-
+softdepend: [iConomy, Permissions]
 commands:
     SocietyCraft:
         description: Basic command to access help
         usage: |
           /<command>
           Example: /<command> : Shows the basic help page.
-          Example: /<command> Settlement : Shows the settlement help page.
+          Example: /<command> Settlement : Shows the settlement help page.  
     SC:
-    	description: Basic command to acces help, short version
-    	usage: |
+        description: Basic command to acces help, short version
+        usage: |
           /<command>
           Example: /<command> : Shows the basic help page.
           Example: /<command> Settlement : Shows the settlement help page.
@@ -25,8 +24,9 @@ commands:
           Example: /<command> : Shows the admin page with statistics etc.
           Example: /<command> Settlement : Shows the settlement admin page.
     SA:
-    	description: Societycraft admin commands, short version
-    	usage: |
+        description: Societycraft admin commands, short version
+        usage: |
           /<command>
           Example: /<command> : Shows the admin page with statistics etc.
           Example: /<command> Settlement : Shows the settlement admin page.
+    

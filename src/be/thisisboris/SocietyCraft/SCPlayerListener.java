@@ -7,7 +7,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 /**
  * Handle events for all Player related events
- * @author Thisisboris, cskiwi
+ * @authors Thisisboris and cskiwi
  */
 
 public class SCPlayerListener extends PlayerListener {

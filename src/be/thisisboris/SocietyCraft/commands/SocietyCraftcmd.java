@@ -13,11 +13,11 @@ import be.thisisboris.SocietyCraft.includes.SCLogger;
  * Boris typ gij effe :P
  * dit is voor die switch case
  */
-enum HelpList { plot, house, resident, nation;};
-enum NationList { add, remove, setking, setcapital };
-enum TownList { add, remove, setspawn, setassistent, removeassistent, list };
-enum CitezenList { make, setowner, givemoney };
-enum JobsList { join, browse, stop };    
+enum HelpList {plot, house, resident, nation;};
+enum NationList {add, remove, setking, setcapital };
+enum TownList {add, remove, setspawn, setassistent, removeassistent, list };
+enum CitezenList {make, setowner, givemoney };
+enum JobsList {join, browse, quit };    
 enum AdminList {kick, ban}
 
 //import be.thisisboris.SocietyCraft.includes.DataManager;
@@ -75,6 +75,7 @@ public class SocietyCraftcmd implements CommandExecutor {
 	    		}
     		}else if (is(args[0],"Help")){
 	    		if (args.length >= 2){
+	    			handled = true;
 	    			switch (HelpList.valueOf(args[1])){
 	    			case plot:
 	    				//------------------
@@ -86,13 +87,11 @@ public class SocietyCraftcmd implements CommandExecutor {
 	            					message = prefix.concat("[HELP]");
 	                    			message = "You must be kiwi to know this command :P";
 	                    			sendMessage(sender, message);
-	                    			handled = true;
 	            				}
 	            			}else {
 		            			message = prefix.concat("[HELP]");
 		            			message = "Here comes the helppage for the plots";
 		            			sendMessage(sender, message);
-		            			handled = true;
 	            			}
 	            		}
 	    				break;
@@ -104,16 +103,15 @@ public class SocietyCraftcmd implements CommandExecutor {
 	            			message = prefix.concat("[HELP]");
 	            			message = "Here comes the helppage for the house";
 	            			sendMessage(sender, message);
-	            			handled = true;
 	            		}
 	    				break;
+	   
 	    			default:
 	    				// wrong command after help
 	    				if (isPlayer(sender)){
 	            			message = prefix.concat("[HELP]");
 	            			message = "Can't find help page, the following helppages excists: plot, house, resident, nation";
 	            			sendMessage(sender, message);
-	            			handled = true;
 	            		}
 	    				break;
 	    			}        		        		
@@ -143,18 +141,20 @@ public class SocietyCraftcmd implements CommandExecutor {
         		 * 
         		 */
 
-        	// admin
-        	if (is(label, "SocietyAdmin") || is(label, "sa")) {
+        	
+        } 
+        if (is(label, "SocietyAdmin") || is(label, "SA")) {
+    	if (args == null || args.length == 0){
         		//------------------
 				// Player
 				//------------------
 				if (isPlayer(sender)){
-        			
-        			message = prefix.concat("[HELP]");
-        			message = "Here you go some admin help xD";
-        			sendMessage(sender, message);
-        			handled = true;
-        			
+        			if (getPlayer(sender).isOp()){
+        				message = prefix.concat("[HELP]");
+        				message = "Yes yes, your an admin";
+        				sendMessage(sender, message);
+            			handled = true;
+        			}
         		} else {
         		//-------------------
     			// Terminal
@@ -165,21 +165,19 @@ public class SocietyCraftcmd implements CommandExecutor {
         			handled = true;
         			
         		}
-				if (args == null || args.length == 0){
-        			// He entered /sc help
-        		}else if (is(args[0],"Help")){
-        			if (args.length > 0){
-        				switch (AdminList.valueOf(args[1])){
-    	        		case ban:
-    	        			break;
-    	        		default:
-    	        			// wrong command after help
-    	        			break;
-    	        		}
-        			}	        		
-				}
-        	}
-        }
+    		}else if (is(args[0],"Help")){
+    			if (args.length > 0){
+    				handled = true;
+    				switch (AdminList.valueOf(args[1])){
+	        		case ban:
+	        			break;
+	        		default:
+	        			// wrong command after help
+	        			break;
+	        		}
+    			}	        		
+			}
+    	}
         return handled;
     }
 

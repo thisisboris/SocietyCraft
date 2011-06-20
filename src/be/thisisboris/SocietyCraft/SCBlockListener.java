@@ -1,10 +1,11 @@
 package be.thisisboris.SocietyCraft;
 
+import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
-import org.bukkit.event.block.BlockDamageEvent;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockListener;
 import org.bukkit.event.block.SignChangeEvent;
-
 /**
  * SocietyCraft block listener
  * @authors Thisisboris and cskiwi
@@ -21,10 +22,24 @@ public class SCBlockListener extends BlockListener {
 	@Override
     public void onSignChange(SignChangeEvent event) {
         Player player = event.getPlayer();
-    }
-//    
-    public void onBlockDamage(BlockDamageEvent event) {
-   }
+    } 
+	public void onBlockBreak (BlockBreakEvent event) {
+		if (event.isCancelled()) return;
+		Block block = event.getBlock();
+		Player player = event.getPlayer();
+		
+		if (block.getType() == Material.LOG) {
+			player.sendMessage("You are not allowed to have that wood block!");
+			event.setCancelled(true);
+		}
+		if (block.getType() == Material.GRASS){
+			player.sendMessage("Here you go a dirt block");
+			event.setCancelled(false);
+		}
+	}
+//
+//    public void onBlockDamage(BlockDamageEvent event) {
+//    }
 //
 //    public void onBlockCanBuild(BlockCanBuildEvent event) {
 //    }
@@ -41,8 +56,7 @@ public class SCBlockListener extends BlockListener {
 //    public void onBlockPhysics(BlockPhysicsEvent event) {
 //    }
 //
-//    public void onBlockPlace(BlockPlaceEvent event) {
-//    }
+//    
 //
 //    public void onBlockRedstoneChange(BlockRedstoneEvent event) {
 //    }

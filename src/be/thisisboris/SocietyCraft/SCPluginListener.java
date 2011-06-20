@@ -5,7 +5,7 @@ import org.bukkit.event.server.PluginEnableEvent;
 import org.bukkit.event.server.ServerListener;
 
 /**
- * @author Thisisboris, cskiwi
+ * @authors Thisisboris and cskiwi
  */
 public class SCPluginListener extends ServerListener {
 

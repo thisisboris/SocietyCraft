@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event.Priority;
 import org.bukkit.event.Event;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.PluginLoader;
 import org.bukkit.plugin.PluginManager;
 
 import be.thisisboris.SocietyCraft.commands.SocietyCraftcmd;
@@ -22,12 +23,13 @@ import be.thisisboris.SocietyCraft.includes.SCLogger;
 /**
  * SocietyCraft - A world enhancing plugin for Bukkit
  *
- * @author Thisisboris, cskiwi
+ * @authors Thisisboris and cskiwi
  */
 
 public class SocietyCraft extends JavaPlugin {
 	private final SCPlayerListener playerListener = new SCPlayerListener(this);
     private final SCBlockListener blockListener = new SCBlockListener(this);
+    private final SCPluginListener pluginListener = new SCPluginListener(this);
     private final CommandManager commandManager = new CommandManager(this);
     private final List<Player> debugees = new ArrayList<Player>();
 	public static String name;
@@ -37,18 +39,28 @@ public class SocietyCraft extends JavaPlugin {
     // Methods
     
     public void onEnable() {
-   
-    	name = "[SOCIETYCRAFT] ";
-        version = "0.0.1";
-        
-    	SCLogger.initialize(Logger.getLogger("Minecraft"));
+    	name = this.getDescription().getName();
+        version = this.getDescription().getVersion();
+    	
+        // Logger
+    	SCLogger.initialize(Logger.getLogger("Minecraft"));  	
+    	
+    	/*
+         * Events
+         */
         PluginManager pm = getServer().getPluginManager();
-        
+        // Plugin Events
+        pm.registerEvent(Event.Type.PLUGIN_ENABLE, pluginListener, Priority.Monitor, this);
+        // Block Events
+        pm.registerEvent(Event.Type.BLOCK_CANBUILD, blockListener, Priority.Normal, this);
+        // Player Events
         pm.registerEvent(Event.Type.PLAYER_JOIN, playerListener, Priority.Normal, this);
         pm.registerEvent(Event.Type.PLAYER_QUIT, playerListener, Priority.Normal, this);
         pm.registerEvent(Event.Type.PLAYER_MOVE, playerListener, Priority.Normal, this);
-        pm.registerEvent(Event.Type.BLOCK_CANBUILD, blockListener, Priority.Normal, this);
         pm.registerEvent(Event.Type.BLOCK_PLACE, playerListener, Priority.Normal, this);
+        pm.registerEvent(Event.Type.PLAYER_CHAT, playerListener, Priority.Normal, this);
+        pm.registerEvent(Event.Type.PLAYER_INTERACT_ENTITY, playerListener, Priority.Normal, this);
+        
         /*
          * I'll be working on a way give an AI to certain NPC's and NPE's. Listening to the chat
          * will be part of this. Example: If a player approaches a NPC, the NOC speaks to him in 
@@ -67,9 +79,6 @@ public class SocietyCraft extends JavaPlugin {
          * Okay, have a nice day!
          * 
          */
-        
-        pm.registerEvent(Event.Type.PLAYER_CHAT, playerListener, Priority.Normal, this);
-        pm.registerEvent(Event.Type.PLAYER_INTERACT_ENTITY, playerListener, Priority.Normal, this);
 
         // Register our commands
         setupCommands();

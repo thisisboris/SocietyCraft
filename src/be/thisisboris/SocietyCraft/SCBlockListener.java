@@ -7,7 +7,7 @@ import org.bukkit.event.block.SignChangeEvent;
 
 /**
  * SocietyCraft block listener
- * @author Thisisboris, cskiwi
+ * @authors Thisisboris and cskiwi
  */
 
 

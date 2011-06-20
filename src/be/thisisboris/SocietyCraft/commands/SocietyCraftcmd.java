@@ -9,7 +9,16 @@ import org.bukkit.entity.Player;
 import be.thisisboris.SocietyCraft.SocietyCraft;
 import be.thisisboris.SocietyCraft.includes.SCLogger;
 
-
+/*
+ * Boris typ gij effe :P
+ * dit is voor die switch case
+ */
+enum HelpList { plot, house, resident, nation;};
+enum NationList { add, remove, setking, setcapital };
+enum TownList { add, remove, setspawn, setassistent, removeassistent, list };
+enum CitezenList { make, setowner, givemoney };
+enum JobsList { join, browse, stop };    
+enum AdminList {kick, ban}
 
 //import be.thisisboris.SocietyCraft.includes.DataManager;
 
@@ -28,7 +37,7 @@ public class SocietyCraftcmd implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         boolean handled = false;
-        String prefix = colorizeText("[SocietyCraft] - ", ChatColor.GOLD);
+        String prefix = "[SocietyCraft] - ";
         String message;
         if (is(label, "SocietyCraft") || is(label, "SC")) {
         	
@@ -43,26 +52,80 @@ public class SocietyCraftcmd implements CommandExecutor {
 				 * That's logic!
         		 *
         		 */
-
-        	if (args == null || args.length == 0 || is(args[0],"Help")){
-        		        		
-        		if (isPlayer(sender)){
-        			
-        			message = prefix.concat("[HELP]");
-        			
-        			sendMessage(sender, message);
-        			handled = true;
-        			
-        		} else {
-        			
-        			message = prefix.concat("Prepare for statistics dump");
-        			
-        			sendLog(sender, message);
-        			handled = true;
-        			
-        		}
-        		        		
-        	}
+        	if (args == null || args.length == 0){
+	        	//------------------
+				// Player
+				//------------------
+				if (isPlayer(sender)){
+	    			
+	    			message = prefix.concat("[HELP]");
+	    			message = "Here you go some help xD";
+	    			sendMessage(sender, message);
+	    			handled = true;
+	    			
+	    		} else {
+	    		//-------------------
+				// Terminal
+				//-------------------
+	    			message = prefix.concat("Prepare for statistics dump");
+	    			message = "Here you go some help xD";
+	    			sendLog(sender, message);
+	    			handled = true;
+	    			
+	    		}
+    		}else if (is(args[0],"Help")){
+	    		if (args.length >= 2){
+	    			switch (HelpList.valueOf(args[1])){
+	    			case plot:
+	    				//------------------
+	    				// Player
+	    				//------------------
+	    				if (isPlayer(sender)){
+	    					if (args.length == 3){
+	    						if (args[2].hashCode() == "kiwi".hashCode()){
+	            					message = prefix.concat("[HELP]");
+	                    			message = "You must be kiwi to know this command :P";
+	                    			sendMessage(sender, message);
+	                    			handled = true;
+	            				}
+	            			}else {
+		            			message = prefix.concat("[HELP]");
+		            			message = "Here comes the helppage for the plots";
+		            			sendMessage(sender, message);
+		            			handled = true;
+	            			}
+	            		}
+	    				break;
+	    			case house:
+	    				//------------------
+	    				// Player
+	    				//------------------
+	    				if (isPlayer(sender)){
+	            			message = prefix.concat("[HELP]");
+	            			message = "Here comes the helppage for the house";
+	            			sendMessage(sender, message);
+	            			handled = true;
+	            		}
+	    				break;
+	    			default:
+	    				// wrong command after help
+	    				if (isPlayer(sender)){
+	            			message = prefix.concat("[HELP]");
+	            			message = "Can't find help page, the following helppages excists: plot, house, resident, nation";
+	            			sendMessage(sender, message);
+	            			handled = true;
+	            		}
+	    				break;
+	    			}        		        		
+	        	}else {
+	        		if (isPlayer(sender)){
+            			message = prefix.concat("[HELP]");
+            			message = "/sc help";
+            			sendMessage(sender, message);
+            			handled = true;
+            		}
+	    		}
+    		}
         	
         		/*
         		 * Since these basic commands display help pages, and we have a lot
@@ -79,27 +142,42 @@ public class SocietyCraftcmd implements CommandExecutor {
         		 * That's logic!
         		 * 
         		 */
-        	
-        	else if (is(args[0],"Nation")) {
-        		
-        		
-        
-        	} else if (is(args[0],"Town")) {
-        		
-        		
-        		
-        	} else if (is(args[0],"Citizen")) {
-        		
-        		
-        		
-        	} else if (is(args[0],"Jobs")) {
-        		
-        		
-        		
-        	} else if (is(args[0],"")) {
-        		
-        		
-        		
+
+        	// admin
+        	if (is(label, "SocietyAdmin") || is(label, "sa")) {
+        		//------------------
+				// Player
+				//------------------
+				if (isPlayer(sender)){
+        			
+        			message = prefix.concat("[HELP]");
+        			message = "Here you go some admin help xD";
+        			sendMessage(sender, message);
+        			handled = true;
+        			
+        		} else {
+        		//-------------------
+    			// Terminal
+    			//-------------------
+        			message = prefix.concat("Prepare for statistics dump");
+        			message = "Here you go some admin help xD";
+        			sendLog(sender, message);
+        			handled = true;
+        			
+        		}
+				if (args == null || args.length == 0){
+        			// He entered /sc help
+        		}else if (is(args[0],"Help")){
+        			if (args.length > 0){
+        				switch (AdminList.valueOf(args[1])){
+    	        		case ban:
+    	        			break;
+    	        		default:
+    	        			// wrong command after help
+    	        			break;
+    	        		}
+        			}	        		
+				}
         	}
         }
         return handled;

@@ -37,8 +37,6 @@ public class SocietyCraftcmd implements CommandExecutor {
         boolean handled = false;
         String prefix = "[SocietyCraft] - ";
         String message;
-        String commandMessage;
-        String newLine = "\n";
                 
         if (is(label, "SocietyCraft") || is(label, "SC")) {
 
@@ -63,9 +61,13 @@ public class SocietyCraftcmd implements CommandExecutor {
 	    		//-------------------
 				// Terminal
 				//-------------------
-	    			message = prefix.concat("Prepare for statistics dump");
-	    			message = "Here you go some help xD";
-	    			sendLog(sender, message);
+	    			sendLog(sender, "Prepare for statistics dump!");
+	    			sendLog(sender, "Dump!");
+	    			sendLog(sender, "Dump!");
+	    			sendLog(sender, "Dump!");
+	    			sendLog(sender, "Dump!");
+	    			sendLog(sender, "Dump!");
+	    			sendLog(sender, "Holy shit that's a lot of dumps!");
 	    			handled = true;
 	    			
 	    		}

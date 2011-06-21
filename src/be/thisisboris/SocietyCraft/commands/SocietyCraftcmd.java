@@ -1,5 +1,7 @@
 package be.thisisboris.SocietyCraft.commands;
 
+import java.text.Format;
+
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -37,6 +39,7 @@ public class SocietyCraftcmd implements CommandExecutor {
         String message;
         String commandMessage;
         String newLine = "\n";
+                
         if (is(label, "SocietyCraft") || is(label, "SC")) {
 
         	if (args == null || args.length == 0){
@@ -46,20 +49,14 @@ public class SocietyCraftcmd implements CommandExecutor {
 				if (isPlayer(sender)){
 	    			
 	    			message = prefix.concat("[HELP]");
-	    			message = message + newLine;
-	    			commandMessage = colorizeText("/SC or SocietyCraft: ", ChatColor.LIGHT_PURPLE) + "Shows this page.";
-	    			commandMessage += newLine;
-	    			commandMessage += colorizeText("/SC Nations: ", ChatColor.LIGHT_PURPLE) + "Information about Nations";
-	    			commandMessage += newLine;
-	    			commandMessage += colorizeText("/SC NPC's: ", ChatColor.LIGHT_PURPLE) + "Information about NPC's";
-	    			commandMessage += newLine;
-	    			commandMessage += colorizeText("/SC Jobs: ", ChatColor.LIGHT_PURPLE) + "Information about jobs";
-	    			commandMessage += newLine;
-	    			commandMessage += colorizeText("/SC chat: ", ChatColor.LIGHT_PURPLE) + "Information about different Chatchannels";
-	    			
-    				message = message + commandMessage;
-	    				
 	    			sendMessage(sender, message);
+	    			
+	    			sendMessage(sender, colorizeText("/SC or SocietyCraft: ", ChatColor.LIGHT_PURPLE) + "Shows this page.");
+	    			sendMessage(sender, colorizeText("/SC Nations: ", ChatColor.LIGHT_PURPLE) + "Information about Nations");
+	    			sendMessage(sender, colorizeText("/SC NPC's: ", ChatColor.LIGHT_PURPLE) + "Information about NPC's");
+	    			sendMessage(sender, colorizeText("/SC Jobs: ", ChatColor.LIGHT_PURPLE) + "Information about jobs");
+	    			sendMessage(sender, colorizeText("/SC chat: ", ChatColor.LIGHT_PURPLE) + "Information about different Chatchannels");
+
 	    			handled = true;
 	    			
 	    		} else {

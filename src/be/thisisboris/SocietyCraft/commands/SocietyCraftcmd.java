@@ -9,14 +9,10 @@ import org.bukkit.entity.Player;
 import be.thisisboris.SocietyCraft.SocietyCraft;
 import be.thisisboris.SocietyCraft.includes.SCLogger;
 
-/*
- * Boris typ gij effe :P
- * dit is voor die switch case
- */
 enum HelpList {plot, house, resident, nation;};
 enum NationList {add, remove, setking, setcapital };
 enum TownList {add, remove, setspawn, setassistent, removeassistent, list };
-enum CitezenList {make, setowner, givemoney };
+enum CitizenList {make, setowner, givemoney };
 enum JobsList {join, browse, quit };    
 enum AdminList {kick, ban}
 
@@ -39,19 +35,10 @@ public class SocietyCraftcmd implements CommandExecutor {
         boolean handled = false;
         String prefix = "[SocietyCraft] - ";
         String message;
+        String commandMessage;
+        String newLine = "\n";
         if (is(label, "SocietyCraft") || is(label, "SC")) {
-        	
-        		/* 
-        		 * When a user with permissions, which we still have to implement, 
-        		 * types /sc or /societycraft he gets an overview of all the help
-        		 * sections there are in Societycraft.
-        		 * 
-        		 * If the terminal executes this command, he should get the statistics
-				 * of the current Society. 
-				 * 
-				 * That's logic!
-        		 *
-        		 */
+
         	if (args == null || args.length == 0){
 	        	//------------------
 				// Player
@@ -59,7 +46,13 @@ public class SocietyCraftcmd implements CommandExecutor {
 				if (isPlayer(sender)){
 	    			
 	    			message = prefix.concat("[HELP]");
-	    			message = "Here you go some help xD";
+	    			message = message + newLine;
+	    			commandMessage = colorizeText("/SC or SocietyCraft:", ChatColor.LIGHT_PURPLE) + "Show this page.";
+	    			commandMessage += newLine;
+	    			commandMessage += colorizeText("/SC house:", ChatColor.LIGHT_PURPLE);	   
+	    			
+    				message = message + commandMessage;
+	    				
 	    			sendMessage(sender, message);
 	    			handled = true;
 	    			
@@ -143,7 +136,7 @@ public class SocietyCraftcmd implements CommandExecutor {
 
         	
         } else if (is(label, "SocietyAdmin") || is(label, "SA")) {
-        	if (args == null || args.length == 0){
+    	if (args == null || args.length == 0){
         		//------------------
 				// Player
 				//------------------

@@ -142,9 +142,8 @@ public class SocietyCraftcmd implements CommandExecutor {
         		 */
 
         	
-        } 
-        if (is(label, "SocietyAdmin") || is(label, "SA")) {
-    	if (args == null || args.length == 0){
+        } else if (is(label, "SocietyAdmin") || is(label, "SA")) {
+        	if (args == null || args.length == 0){
         		//------------------
 				// Player
 				//------------------

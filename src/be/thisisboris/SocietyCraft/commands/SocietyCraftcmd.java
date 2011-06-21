@@ -101,7 +101,7 @@ public class SocietyCraftcmd implements CommandExecutor {
 	    				//------------------
 	    				if (isPlayer(sender)){
 	            			message = prefix.concat("[HELP]");
-	            			message = "Here comes the helppage for the house";
+	            			message += "Here comes the helppage for the house";
 	            			sendMessage(sender, message);
 	            		}
 	    				break;

@@ -47,9 +47,15 @@ public class SocietyCraftcmd implements CommandExecutor {
 	    			
 	    			message = prefix.concat("[HELP]");
 	    			message = message + newLine;
-	    			commandMessage = colorizeText("/SC or SocietyCraft:", ChatColor.LIGHT_PURPLE) + "Show this page.";
+	    			commandMessage = colorizeText("/SC or SocietyCraft: ", ChatColor.LIGHT_PURPLE) + "Shows this page.";
 	    			commandMessage += newLine;
-	    			commandMessage += colorizeText("/SC house:", ChatColor.LIGHT_PURPLE);	   
+	    			commandMessage += colorizeText("/SC Nations: ", ChatColor.LIGHT_PURPLE) + "Information about Nations";
+	    			commandMessage += newLine;
+	    			commandMessage += colorizeText("/SC NPC's: ", ChatColor.LIGHT_PURPLE) + "Information about NPC's";
+	    			commandMessage += newLine;
+	    			commandMessage += colorizeText("/SC Jobs: ", ChatColor.LIGHT_PURPLE) + "Information about jobs";
+	    			commandMessage += newLine;
+	    			commandMessage += colorizeText("/SC chat: ", ChatColor.LIGHT_PURPLE) + "Information about different Chatchannels";
 	    			
     				message = message + commandMessage;
 	    				

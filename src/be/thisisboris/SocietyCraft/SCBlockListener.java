@@ -3,6 +3,7 @@ package be.thisisboris.SocietyCraft;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.bukkit.ChatColor;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockListener;
 import org.bukkit.event.block.SignChangeEvent;
@@ -27,15 +28,20 @@ public class SCBlockListener extends BlockListener {
 		if (event.isCancelled()) return;
 		Block block = event.getBlock();
 		Player player = event.getPlayer();
+		event.setCancelled(CancelBreakBlock(player, block));
+	}
+	private boolean CancelBreakBlock(Player player, Block block){
+		boolean ReturnValue = true;
 		
 		if (block.getType() == Material.LOG) {
-			player.sendMessage("You are not allowed to have that wood block!");
-			event.setCancelled(true);
+			player.sendMessage(ChatColor.RED + "You are not allowed to have that wood block!" + ChatColor.WHITE);
+			ReturnValue = true;
 		}
 		if (block.getType() == Material.GRASS){
 			player.sendMessage("Here you go a dirt block");
-			event.setCancelled(false);
+			ReturnValue = false;
 		}
+		return ReturnValue;
 	}
 //
 //    public void onBlockDamage(BlockDamageEvent event) {

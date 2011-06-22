@@ -7,6 +7,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockListener;
 import org.bukkit.event.block.SignChangeEvent;
+import org.bukkit.Location;
 /**
  * SocietyCraft block listener
  * @authors Thisisboris and cskiwi
@@ -18,17 +19,13 @@ public class SCBlockListener extends BlockListener {
 	
 	public SCBlockListener(final SocietyCraft plugin) {
         this.plugin = plugin;
-    }
-
-	@Override
-    public void onSignChange(SignChangeEvent event) {
-        Player player = event.getPlayer();
-    } 
+	}
 	public void onBlockBreak (BlockBreakEvent event) {
 		if (event.isCancelled()) return;
 		Block block = event.getBlock();
 		Player player = event.getPlayer();
 		event.setCancelled(CancelBreakBlock(player, block));
+		// Location pos = player.getLocation();
 	}
 	private boolean CancelBreakBlock(Player player, Block block){
 		boolean ReturnValue = true;
@@ -46,6 +43,10 @@ public class SCBlockListener extends BlockListener {
 //
 //    public void onBlockDamage(BlockDamageEvent event) {
 //    }
+//	
+//	  public void onSignChange(SignChangeEvent event) {
+//	      Player player = event.getPlayer();
+//	  } 
 //
 //    public void onBlockCanBuild(BlockCanBuildEvent event) {
 //    }
@@ -61,8 +62,6 @@ public class SCBlockListener extends BlockListener {
 //
 //    public void onBlockPhysics(BlockPhysicsEvent event) {
 //    }
-//
-//    
 //
 //    public void onBlockRedstoneChange(BlockRedstoneEvent event) {
 //    }

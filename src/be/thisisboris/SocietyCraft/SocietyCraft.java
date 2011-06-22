@@ -17,6 +17,7 @@ import org.bukkit.plugin.PluginManager;
 import be.thisisboris.SocietyCraft.commands.SocietyCraftcmd;
 import be.thisisboris.SocietyCraft.includes.CommandManager;
 import be.thisisboris.SocietyCraft.includes.SCLogger;
+import be.thisisboris.SocietyCraft.utils.Databases.DatabaseManager;
 
 
 
@@ -31,6 +32,7 @@ public class SocietyCraft extends JavaPlugin {
     private final SCBlockListener blockListener = new SCBlockListener(this);
     private final SCPluginListener pluginListener = new SCPluginListener(this);
     private final CommandManager commandManager = new CommandManager(this);
+    private final DatabaseManager dbMan = new DatabaseManager(this);
     private final List<Player> debugees = new ArrayList<Player>();
 	public static String name;
     public static String version;
@@ -83,7 +85,21 @@ public class SocietyCraft extends JavaPlugin {
 
         // Register our commands
         setupCommands();
+        
+        // Check for database
 
+        if (dbMan.initialize()) {
+        	
+        	String dbtype = dbMan.DBtype;
+        	SCLogger.info(name + " has succesfully connected to " + dbtype);
+        	
+        } else {
+        	
+        	SCLogger.warning(name + "could not connect to any Database!");
+        	SCLogger.warning(name + "functionality will be limited!");
+        	
+        }
+        
         SCLogger.info(name + " version " + version + " is enabled!");
     }
     

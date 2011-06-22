@@ -28,7 +28,7 @@ public class BServer {
     private HashMap<String, BWorld> worlds = new HashMap<String, BWorld>();
 
     private BServer(JavaPlugin plugin) {
-        //Getting neede structures
+        //Getting needed structures
         server = plugin.getServer();
         try {
             cServer = (CraftServer) server;
@@ -40,7 +40,7 @@ public class BServer {
     }
 
     private BServer(Server server) {
-        //Getting neede structures
+        //Getting needed structures
         this.server = server;
         try {
             cServer = (CraftServer) server;

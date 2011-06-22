@@ -1,5 +1,7 @@
 package be.thisisboris.SocietyCraft.utils.Databases;
 
+import java.io.File;
+
 import be.thisisboris.SocietyCraft.SocietyCraft;
 import be.thisisboris.SocietyCraft.includes.SCLogger;
 
@@ -14,7 +16,8 @@ public class DatabaseManager {
 	
 	public String DBtype = "";
 	public String propFile = "";
-			
+	
+	private static final String settingsFile = "Config.properties";		
 	// Methods
 	public DatabaseManager(SocietyCraft instance) {
 		plugin = instance;	
@@ -24,7 +27,9 @@ public class DatabaseManager {
 
 	public boolean initialize() {
 		boolean succeeded = false;
-		
+			
+			File configFile = new File(plugin.getDataFolder(), settingsFile);
+		    PropertiesFile file = new PropertiesFile(configFile);
 			switch (Supported.valueOf(null)) {
 			
 			case MySQL:
@@ -92,6 +97,5 @@ public class DatabaseManager {
 		
 		
 		return succeeded;
-	}
-	
+	}	
 }

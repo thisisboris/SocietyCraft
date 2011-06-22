@@ -35,7 +35,7 @@ public class SocietyCraftcmd implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         boolean handled = false;
-        String prefix = "[SocietyCraft] - ";
+        String prefix = colorizeText("[SocietyCraft] - ", ChatColor.GOLD);
         String message;
                 
         if (is(label, "SocietyCraft") || is(label, "SC")) {
@@ -49,11 +49,11 @@ public class SocietyCraftcmd implements CommandExecutor {
 	    			message = prefix.concat("[HELP]");
 	    			sendMessage(sender, message);
 	    			
-	    			sendMessage(sender, colorizeText("/SC or SocietyCraft: ", ChatColor.LIGHT_PURPLE) + "Shows this page.");
-	    			sendMessage(sender, colorizeText("/SC Nations: ", ChatColor.LIGHT_PURPLE) + "Information about Nations");
-	    			sendMessage(sender, colorizeText("/SC NPC's: ", ChatColor.LIGHT_PURPLE) + "Information about NPC's");
-	    			sendMessage(sender, colorizeText("/SC Jobs: ", ChatColor.LIGHT_PURPLE) + "Information about jobs");
-	    			sendMessage(sender, colorizeText("/SC chat: ", ChatColor.LIGHT_PURPLE) + "Information about different Chatchannels");
+	    			sendMessage(sender, colorizeText("/SC or SocietyCraft: ", ChatColor.DARK_AQUA) + "Shows this page.");
+	    			sendMessage(sender, colorizeText("/SC Nations: ", ChatColor.DARK_AQUA) + "Information about Nations");
+	    			sendMessage(sender, colorizeText("/SC NPC's: ", ChatColor.DARK_AQUA) + "Information about NPC's");
+	    			sendMessage(sender, colorizeText("/SC Jobs: ", ChatColor.DARK_AQUA) + "Information about jobs");
+	    			sendMessage(sender, colorizeText("/SC chat: ", ChatColor.DARK_AQUA) + "Information about different Chatchannels");
 
 	    			handled = true;
 	    			

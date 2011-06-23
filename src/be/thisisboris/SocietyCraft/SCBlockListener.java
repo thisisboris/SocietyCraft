@@ -28,7 +28,7 @@ public class SCBlockListener extends BlockListener {
 		// Location pos = player.getLocation();
 	}
 	private boolean CancelBreakBlock(Player player, Block block){
-		boolean ReturnValue = true;
+		boolean ReturnValue = false;
 		
 		if (block.getType() == Material.LOG) {
 			player.sendMessage(ChatColor.RED + "You are not allowed to have that wood block!" + ChatColor.WHITE);

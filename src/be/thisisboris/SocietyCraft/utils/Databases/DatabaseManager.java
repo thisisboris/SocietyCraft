@@ -10,27 +10,30 @@ public class DatabaseManager {
 	// Properties
 	
 	private SocietyCraft plugin;
-	private String name;
+	private String name = "[SOCIETYCRAFT]";
 	
 	enum Supported {MySQL, SQLite, Flatfile, None}
 	
 	public String DBtype = "";
 	public String propFile = "";
 	
-	private static final String settingsFile = "Config.properties";		
+	private static final String settingsFile = "db.properties";		
 	// Methods
 	public DatabaseManager(SocietyCraft instance) {
 		plugin = instance;	
-		name = plugin.getDescription().getName();
+		
+		File configFile = new File(plugin.getDataFolder(), settingsFile);
+	    PropertiesFile file = new PropertiesFile(configFile);
 	}
 	
 
 	public boolean initialize() {
+		
+		name = plugin.getDescription().getName();
+		
 		boolean succeeded = false;
-			
-			File configFile = new File(plugin.getDataFolder(), settingsFile);
-		    PropertiesFile file = new PropertiesFile(configFile);
-			switch (Supported.valueOf(null)) {
+
+			switch (Supported.valueOf("None")) {
 			
 			case MySQL:
 				
@@ -63,7 +66,7 @@ public class DatabaseManager {
 			default:
 				
 				SCLogger.warning("[" + name + "] - " + "No database found in SocietyCraft.dbprop");
-				SCLogger.warning("[" + name + "] - " +"Using Flatfile as Standard");
+				SCLogger.warning("[" + name + "] - " + "Using Flatfile as Standard");
 				
 				DBtype = "Flatfile";
 				succeeded = true;

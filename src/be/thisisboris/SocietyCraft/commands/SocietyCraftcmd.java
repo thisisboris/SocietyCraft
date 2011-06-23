@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 import be.thisisboris.SocietyCraft.SocietyCraft;
 import be.thisisboris.SocietyCraft.includes.SCLogger;
 
-enum HelpList {plot, house, resident, nation;};
+enum HelpList {list, plot, house, resident, nation;};
 enum NationList {add, remove, setking, setcapital };
 enum TownList {add, remove, setspawn, setassistent, removeassistent, list };
 enum CitizenList {make, setowner, givemoney };
@@ -75,6 +75,25 @@ public class SocietyCraftcmd implements CommandExecutor {
 	    		if (args.length >= 2){
 	    			handled = true;
 	    			switch (HelpList.valueOf(args[1])){
+	    			case list:
+	    				
+	    				String listmessage;
+	    				int amount;
+	    				
+	    				listmessage = "Amount of players:";
+	    				amount = plugin.playerlist.length;
+	    				listmessage += Integer.toString(amount);
+	    				sendMessage(sender, listmessage);
+	    				
+	    				for (int counter = 0; counter <= amount; counter++) {
+	    					    					
+	    					String name = plugin.playerlist[counter].getDisplayName();
+	    					sendMessage(sender, name);
+	    					
+	    				}
+	    				
+    				break;
+	    			
 	    			case plot:
 	    				//------------------
 	    				// Player

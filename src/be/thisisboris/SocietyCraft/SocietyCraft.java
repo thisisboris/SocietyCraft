@@ -38,6 +38,8 @@ public class SocietyCraft extends JavaPlugin {
     public static String version;
     private static boolean debugging;
     
+    public static Player playerlist[];
+    
     // Methods
     
     public void onEnable() {
@@ -95,8 +97,8 @@ public class SocietyCraft extends JavaPlugin {
         	
         } else {
         	
-        	SCLogger.warning(name + "could not connect to any Database!");
-        	SCLogger.warning(name + "functionality will be limited!");
+        	SCLogger.warning("could not connect to any Database!");
+        	SCLogger.warning("functionality will be limited!");
         	
         }
         

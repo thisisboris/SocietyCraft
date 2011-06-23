@@ -25,10 +25,10 @@ public class PropertiesFile {
             scan = new Scanner(file);
             while (scan.hasNextLine()) {
                 String line = scan.nextLine();
-                if (!line.contains("=")) {
+                if (!line.contains(":")) {
                     continue;
                 }
-                int equals = line.indexOf("=");
+                int equals = line.indexOf(":");
                 int commentIndex = line.length();
                 if (line.contains("#")) {
                     commentIndex = line.indexOf("#");
@@ -165,7 +165,7 @@ public class PropertiesFile {
                 for (PropertyEntry entry : map) {
                     StringBuilder builder = new StringBuilder();
                     builder.append(entry.key);
-                    builder.append(" = ");
+                    builder.append(" : ");
                     builder.append(entry.value);
                     if (!entry.comment.equals("")) {
                         builder.append("   #");

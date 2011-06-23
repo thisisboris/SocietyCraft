@@ -5,12 +5,17 @@ import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerListener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import be.thisisboris.SocietyCraft.includes.SCLogger;
+
 /**
  * Handle events for all Player related events
  * @authors Thisisboris and cskiwi
+ * 
+ * 
  */
 
 public class SCPlayerListener extends PlayerListener {
+	
 	private final SocietyCraft plugin;
 	
 	public SCPlayerListener(SocietyCraft instance) {
@@ -20,6 +25,11 @@ public class SCPlayerListener extends PlayerListener {
 	}
 	
 	public void onPlayerJoin(PlayerJoinEvent event) {
+		
+		int index = plugin.playerlist.length + 1;		
+		plugin.playerlist[index] = event.getPlayer();
+		
+		SCLogger.warning("Added " + event.getPlayer().getDisplayName() + " to the list");
 		
 	}
 	public void onPlayerQuit(PlayerQuitEvent event) {

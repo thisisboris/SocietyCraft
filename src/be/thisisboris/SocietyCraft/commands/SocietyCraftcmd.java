@@ -2,6 +2,8 @@ package be.thisisboris.SocietyCraft.commands;
 
 import java.text.Format;
 
+import net.minecraft.server.PlayerList;
+
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -78,19 +80,25 @@ public class SocietyCraftcmd implements CommandExecutor {
 	    			case list:
 	    				
 	    				String listmessage;
-	    				int amount;
+	    				int length;
 	    				
-	    				listmessage = "Amount of players:";
-	    				amount = plugin.playerlist.length;
-	    				listmessage += Integer.toString(amount);
+	    				listmessage = "Amount of players: ";
+	    				length = plugin.Onlineplayerlist.size();;
+	    				listmessage += Integer.toString(length);
 	    				sendMessage(sender, listmessage);
 	    				
-	    				for (int counter = 0; counter <= amount; counter++) {
-	    					    					
-	    					String name = plugin.playerlist[counter].getDisplayName();
-	    					sendMessage(sender, name);
-	    					
+	    				// resetting message to an empty string
+	    				listmessage = "";
+	    				// adding the players
+	    				for (int i = 0; i < length; i++){
+	    					listmessage += plugin.Onlineplayerlist.get(i).getDisplayName();
 	    				}
+	    				
+	    				// sending the player list
+	    		        if (isPlayer(sender)){
+	    		        	sendMessage(sender, listmessage);
+	    					handled = true;
+	    		        }
 	    				
     				break;
 	    			
@@ -157,8 +165,8 @@ public class SocietyCraftcmd implements CommandExecutor {
         		 * That's logic!
         		 * 
         		 */
-
-        	
+        } else if (is(label, "SetTexSign")){
+       	
         } else if (is(label, "SocietyAdmin") || is(label, "SA")) {
     	if (args == null || args.length == 0){
         		//------------------

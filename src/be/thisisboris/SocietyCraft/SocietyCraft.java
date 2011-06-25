@@ -1,18 +1,36 @@
 package be.thisisboris.SocietyCraft;
 
+import java.net.InetSocketAddress;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
+import org.bukkit.Achievement;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.Server;
+import org.bukkit.Statistic;
+import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Egg;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Snowball;
+import org.bukkit.entity.Vehicle;
 import org.bukkit.event.Event.Priority;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.Event;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.PluginLoader;
 import org.bukkit.plugin.PluginManager;
+import org.bukkit.util.Vector;
 
 import be.thisisboris.SocietyCraft.commands.SocietyCraftcmd;
 import be.thisisboris.SocietyCraft.includes.CommandManager;
@@ -38,11 +56,12 @@ public class SocietyCraft extends JavaPlugin {
     public static String version;
     private static boolean debugging;
     
-    public static Player playerlist[];
-    
+    // now is the list 50 long
+    public static int MAXPLAYERS = 50;
+    public static List<Player> Onlineplayerlist = new ArrayList<Player>();
     // Methods
     
-    public void onEnable() {
+    public void onEnable() {	
     	name = this.getDescription().getName();
         version = this.getDescription().getVersion();
     	

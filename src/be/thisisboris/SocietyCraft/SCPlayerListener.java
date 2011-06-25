@@ -25,12 +25,10 @@ public class SCPlayerListener extends PlayerListener {
 	}
 	
 	public void onPlayerJoin(PlayerJoinEvent event) {
+		int index = plugin.Onlineplayerlist.size();
 		
-		int index = plugin.playerlist.length + 1;		
-		plugin.playerlist[index] = event.getPlayer();
-		
-		SCLogger.warning("Added " + event.getPlayer().getDisplayName() + " to the list");
-		
+		plugin.Onlineplayerlist.add(event.getPlayer());
+		SCLogger.warning("Adding "+event.getPlayer().getDisplayName()+" to the list");
 	}
 	public void onPlayerQuit(PlayerQuitEvent event) {
 		 

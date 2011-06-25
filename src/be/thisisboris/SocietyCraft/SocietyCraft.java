@@ -4,6 +4,10 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
+import org.bukkit.block.Sign;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -38,7 +42,9 @@ public class SocietyCraft extends JavaPlugin {
     public static String version;
     private static boolean debugging;
     
+    // public commands
     public static List<Player> Onlineplayerlist = new ArrayList<Player>();
+    public boolean RequestingEditSign = false;
     // Methods
     
     public void onEnable() {	
@@ -195,4 +201,24 @@ public class SocietyCraft extends JavaPlugin {
         debugging = false;
     }
     
+    private Block signBlock;
+    public void ChangeSign(Block block)
+    {
+    	if (block.getType() == Material.SIGN || block.getType() == Material.SIGN_POST)
+		{
+    		SCLogger.info("you clicked a sign block");
+    		signBlock = block;
+    		ChangeText("herp a derp");
+		}
+    }
+    public void ChangeText(String Text){
+    	if (RequestingEditSign){
+			BlockState state = signBlock.getState();
+			if (state instanceof Sign && state != null) {
+    			Sign sign = (Sign) state;
+    			String[] lines = sign.getLines();
+    			sign.setLine(1, Text);
+			}
+    	}
+    }
 }

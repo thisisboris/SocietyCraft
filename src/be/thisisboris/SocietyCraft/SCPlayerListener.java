@@ -1,10 +1,14 @@
 package be.thisisboris.SocietyCraft;
 
 import org.bukkit.entity.Player;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerListener;
 import org.bukkit.event.player.PlayerQuitEvent;
+
+import be.thisisboris.SocietyCraft.includes.SCLogger;
 
 /**
  * Handle events for all Player related events
@@ -39,10 +43,19 @@ public class SCPlayerListener extends PlayerListener {
 			}
 		}
 	
-	}    	
+	}
+	public void onPlayerInteract(PlayerInteractEvent event) {
+		SCLogger.info("Event Happening");
+		 if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+			 SCLogger.info("Rightclicking");
+				 if (plugin.RequestingEditSign){
+					 SCLogger.info("Rightclicking And it's true");
+					 plugin.ChangeSign(event.getClickedBlock());
+					 plugin.RequestingEditSign = false;
+				 }
+		    }
+	 }
     public void onPlayerKick(PlayerKickEvent event) {
     	
     }
-	
-	
 }

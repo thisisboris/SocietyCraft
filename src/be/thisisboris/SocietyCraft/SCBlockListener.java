@@ -5,7 +5,7 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.ChatColor;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockListener;
+import org.bukkit.event.block.BlockListener;;
 /**
  * SocietyCraft block listener
  * @authors Thisisboris and cskiwi
@@ -32,7 +32,7 @@ public class SCBlockListener extends BlockListener {
 			player.sendMessage(ChatColor.RED + "You are not allowed to have that wood block!" + ChatColor.WHITE);
 			ReturnValue = true;
 		}
-		if (block.getType() == Material.GRASS){
+		if (block.getType() == Material.GRASS || block.getType() == Material.DIRT){
 			player.sendMessage("Here you go a dirt block");
 			ReturnValue = false;
 		}

@@ -133,6 +133,8 @@ public class SocietyCraftcmd implements CommandExecutor {
 	            			message = prefix.concat("[HELP]");
 	            			message = "Can't find help page, the following helppages excists: plot, house, resident, nation";
 	            			sendMessage(sender, message);
+	            		} else {
+	            			SCLogger.warning("not a registerd command.");
 	            		}
 	    				break;
 	    			}        		        		
@@ -144,25 +146,43 @@ public class SocietyCraftcmd implements CommandExecutor {
             			handled = true;
             		}
 	    		}
-    		}
+    		} else if (is(args[0], "SetSignText")){
+	        	if (isPlayer(sender)){
+		        	if (args.length == 2){
+		        		if (getPlayer(sender).isOp()){
+		    				plugin.RequestingEditSign = true;
+		    				sendMessage(sender, "Right click the sign you want to edit");
+		    				handled = true; 
+		    			} else {
+		    				sendMessage(sender, "You need to be an op to do this");
+		    			}
+		        	} else {
+		        		sendMessage(sender, "/sc SetSignText <TEXT>");
+		        		handled = true;
+		        	}
+		       	} else {
+		       		SCLogger.warning("Not a command for terminal.");
+		       		handled = true;
+		       	}
+	        }
         	
-        		/*
-        		 * Since these basic commands display help pages, and we have a lot
-        		 * of help pages, we should check if there are any arguments behind
-        		 * the command. Which will tell the plugin what help page the user
-        		 * wants to see.
-        		 * 
-        		 * If the terminal executes this, different statistics will be displayed.
-        		 * For example:
-        		 * 
-        		 * /sc town will display help for a town to a user, but for the terminal this
-        		 * will return statistics about all towns there are in the world.
-        		 * 
-        		 * That's logic!
-        		 * 
-        		 */
-        } else if (is(label, "SetTexSign")){
-       	
+        	
+    		/*
+    		 * Since these basic commands display help pages, and we have a lot
+    		 * of help pages, we should check if there are any arguments behind
+    		 * the command. Which will tell the plugin what help page the user
+    		 * wants to see.
+    		 * 
+    		 * If the terminal executes this, different statistics will be displayed.
+    		 * For example:
+    		 * 
+    		 * /sc town will display help for a town to a user, but for the terminal this
+    		 * will return statistics about all towns there are in the world.
+    		 * 
+    		 * That's logic!
+    		 * 
+    		 */
+        	
         } else if (is(label, "SocietyAdmin") || is(label, "SA")) {
     	if (args == null || args.length == 0){
         		//------------------

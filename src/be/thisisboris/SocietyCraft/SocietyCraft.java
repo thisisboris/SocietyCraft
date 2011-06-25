@@ -38,8 +38,6 @@ public class SocietyCraft extends JavaPlugin {
     public static String version;
     private static boolean debugging;
     
-    // now is the list 50 long
-    public static int MAXPLAYERS = 50;
     public static List<Player> Onlineplayerlist = new ArrayList<Player>();
     // Methods
     

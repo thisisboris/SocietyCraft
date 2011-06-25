@@ -6,8 +6,6 @@ import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerListener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import be.thisisboris.SocietyCraft.includes.SCLogger;
-
 /**
  * Handle events for all Player related events
  * @authors Thisisboris and cskiwi

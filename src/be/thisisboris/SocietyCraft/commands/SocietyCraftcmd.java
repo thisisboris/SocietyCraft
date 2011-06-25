@@ -1,9 +1,5 @@
 package be.thisisboris.SocietyCraft.commands;
 
-import java.text.Format;
-
-import net.minecraft.server.PlayerList;
-
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

@@ -224,7 +224,6 @@ public class SocietyCraft extends JavaPlugin {
 				String TempLine4 = "";
 				
 				if (Lenght < 60){
-					SCLogger.info("Total string length = " + Lenght);
 					if (Lenght <= 15){
 						TempLine1 = SignTextFull;
 					} else if (Lenght <= 30){
@@ -246,12 +245,6 @@ public class SocietyCraft extends JavaPlugin {
 				signText[1] = TempLine2;
 				signText[2] = TempLine3;
 				signText[3] = TempLine4;
-				
-				// sending to logger for testing purposes
-				SCLogger.info("line 1 = " + signText[0]);
-				SCLogger.info("line 2 = " + signText[1]);
-				SCLogger.info("line 3 = " + signText[2]);
-				SCLogger.info("line 4 = " + signText[3]);
 				
 				// creating a sing variable to set the sign
 				BlockState state = block.getState();

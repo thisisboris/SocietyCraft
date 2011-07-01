@@ -69,7 +69,7 @@ public class SocietyCraft extends JavaPlugin {
         pm.registerEvent(Event.Type.PLAYER_QUIT, playerListener, Priority.Normal, this);
         pm.registerEvent(Event.Type.PLAYER_MOVE, playerListener, Priority.Normal, this);
         pm.registerEvent(Event.Type.PLAYER_CHAT, playerListener, Priority.Normal, this);
-        pm.registerEvent(Event.Type.PLAYER_INTERACT_ENTITY, playerListener, Priority.Normal, this);
+        pm.registerEvent(Event.Type.PLAYER_INTERACT, playerListener, Priority.Normal, this);
         
         /*
          * I'll be working on a way give an AI to certain NPC's and NPE's. Listening to the chat
@@ -202,23 +202,28 @@ public class SocietyCraft extends JavaPlugin {
     }
     
     private Block signBlock;
+    public String[] signText = {"","","",""};
     public void ChangeSign(Block block)
     {
-    	if (block.getType() == Material.SIGN || block.getType() == Material.SIGN_POST)
+    	if (block.getType() == Material.SIGN || block.getType() == Material.SIGN_POST || block.getType() == Material.WALL_SIGN)
 		{
-    		SCLogger.info("you clicked a sign block");
     		signBlock = block;
-    		ChangeText("herp a derp");
+    		ChangeText();
 		}
     }
-    public void ChangeText(String Text){
+    // only this needst to be fixed
+    public void ChangeText(){
     	if (RequestingEditSign){
-			BlockState state = signBlock.getState();
-			if (state instanceof Sign && state != null) {
-    			Sign sign = (Sign) state;
-    			String[] lines = sign.getLines();
-    			sign.setLine(1, Text);
-			}
+    		BlockState state = signBlock.getState();
+			Sign sign = (Sign) state;
+				
+			// resetting the needed ligns
+			sign.setLine(0, signText[0]);
+			sign.setLine(1, signText[1]);
+			sign.setLine(2, signText[2]);
+			sign.setLine(3, signText[3]);
+			sign.update();
+			
     	}
     }
 }

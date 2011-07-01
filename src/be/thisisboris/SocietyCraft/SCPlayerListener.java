@@ -1,5 +1,6 @@
 package be.thisisboris.SocietyCraft;
 
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -45,13 +46,14 @@ public class SCPlayerListener extends PlayerListener {
 	
 	}
 	public void onPlayerInteract(PlayerInteractEvent event) {
-		SCLogger.info("Event Happening");
 		 if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-			 SCLogger.info("Rightclicking");
 				 if (plugin.RequestingEditSign){
-					 SCLogger.info("Rightclicking And it's true");
-					 plugin.ChangeSign(event.getClickedBlock());
-					 plugin.RequestingEditSign = false;
+					 if (event.getPlayer().getItemInHand().getType() == Material.AIR){
+						 plugin.ChangeSign(event.getClickedBlock());
+						 plugin.RequestingEditSign = false;
+					 } else {
+						 event.getPlayer().sendMessage("Rightclick with your hand to change the sign");
+					 }
 				 }
 		    }
 	 }

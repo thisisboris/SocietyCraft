@@ -201,30 +201,72 @@ public class SocietyCraft extends JavaPlugin {
         debugging = false;
     }
     
-    private Block signBlock;
-    public String[] signText = {"","","",""};
-    public void ChangeSign(Block block)
-    {
+   public String SignTextFull = "";
+    // For changing a sign with the program
+    public void ChangeSign(Block block, String Text){
+    	SignTextFull = Text;
+    	ChangeSign(block);
+    }
+    public void ChangeSign(Block block){
     	if (block.getType() == Material.SIGN || block.getType() == Material.SIGN_POST || block.getType() == Material.WALL_SIGN)
 		{
-    		signBlock = block;
-    		ChangeText();
-		}
-    }
-    // only this needst to be fixed
-    public void ChangeText(){
-    	if (RequestingEditSign){
-    		BlockState state = signBlock.getState();
-			Sign sign = (Sign) state;
+    		if (RequestingEditSign){
+    			
+    			// deviding text in to 4 rules;
+    			 String[] signText = {"","","",""};
+    			
+    			// Editing Text
+    			int Lenght = SignTextFull.length();
+				int EndIndex = SignTextFull.length();
+				String TempLine1 = "";
+				String TempLine2 = "";
+				String TempLine3 = "";
+				String TempLine4 = "";
 				
-			// Setting the lines
-			sign.setLine(0, signText[0]);
-			sign.setLine(1, signText[1]);
-			sign.setLine(2, signText[2]);
-			sign.setLine(3, signText[3]);
-			// nessecairy, if not sign text won't change
-			sign.update();
-			
-    	}
+				if (Lenght < 60){
+					SCLogger.info("Total string length = " + Lenght);
+					if (Lenght <= 15){
+						TempLine1 = SignTextFull;
+					} else if (Lenght <= 30){
+						TempLine1 = SignTextFull.substring(0, 15);
+						TempLine2 = SignTextFull.substring(15,EndIndex);
+					} else if (Lenght <= 45){
+						TempLine1 = SignTextFull.substring(0, 15);
+						TempLine2 = SignTextFull.substring(15,30);
+						TempLine3 = SignTextFull.substring(30,EndIndex);
+					} else {
+						TempLine1 = SignTextFull.substring(0, 15);
+						TempLine2 = SignTextFull.substring(15,30);
+						TempLine3 = SignTextFull.substring(30,45);
+						TempLine4 = SignTextFull.substring(45,EndIndex);
+					}
+				}
+				// setting the lines
+				signText[0] = TempLine1;
+				signText[1] = TempLine2;
+				signText[2] = TempLine3;
+				signText[3] = TempLine4;
+				
+				// sending to logger for testing purposes
+				SCLogger.info("line 1 = " + signText[0]);
+				SCLogger.info("line 2 = " + signText[1]);
+				SCLogger.info("line 3 = " + signText[2]);
+				SCLogger.info("line 4 = " + signText[3]);
+				
+				// creating a sing variable to set the sign
+				BlockState state = block.getState();
+    			Sign sign = (Sign) state;
+    				
+    			// Setting the lines
+    			sign.setLine(0, signText[0]);
+    			sign.setLine(1, signText[1]);
+    			sign.setLine(2, signText[2]);
+    			sign.setLine(3, signText[3]);
+    			
+    			// nessecairy, if not sign text won't change
+    			sign.update();
+    			
+        	}
+		}
     }
 }

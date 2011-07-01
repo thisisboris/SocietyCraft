@@ -150,7 +150,6 @@ public class SocietyCraftcmd implements CommandExecutor {
 	        	if (isPlayer(sender)){
 		        	if (args.length >= 2){
 		        		if (getPlayer(sender).isOp()){
-		        			String SignText[] = plugin.signText;
 		        			String TotalText;
 		        			plugin.RequestingEditSign = true;
 		    				sendMessage(sender, "Right click the sign you want to edit");
@@ -165,51 +164,8 @@ public class SocietyCraftcmd implements CommandExecutor {
 		    						TotalText += " ";
 		    					}
 		    				}
-		    				
-	    					int Lenght = TotalText.length();
-	    					int EndIndex = TotalText.length();
-    						String TempLine1 = "";
-    						String TempLine2 = "";
-    						String TempLine3 = "";
-    						String TempLine4 = "";
-    						
-		    				if (Lenght < 60){
-		    					SCLogger.info("Total string length = " + Lenght);
-		    					if (Lenght <= 15){
-		    						TempLine1 = TotalText;
-		    					} else if (Lenght <= 30){
-		    						TempLine1 = TotalText.substring(0, 15);
-		    						TempLine2 = TotalText.substring(15,EndIndex);
-		    					} else if (Lenght <= 45){
-		    						TempLine1 = TotalText.substring(0, 15);
-		    						TempLine2 = TotalText.substring(15,30);
-		    						TempLine3 = TotalText.substring(30,EndIndex);
-		    					} else {
-		    						TempLine1 = TotalText.substring(0, 15);
-		    						TempLine2 = TotalText.substring(15,30);
-		    						TempLine3 = TotalText.substring(30,45);
-		    						TempLine4 = TotalText.substring(30,EndIndex);
-		    					}
-		    				} else {
-		    					sendMessage(sender, "The text is to long for the sign, make it shorter");
-		    				}
-    						// setting the lines
-    						SignText[0] = TempLine1;
-    						SignText[1] = TempLine2;
-    						SignText[2] = TempLine3;
-    						SignText[3] = TempLine4;
-		    				
-    						// sending to logger for testing purposes
-		    				SCLogger.info("line 1 = " + SignText[0]);
-    						SCLogger.info("line 2 = " + SignText[1]);
-    						SCLogger.info("line 3 = " + SignText[2]);
-    						SCLogger.info("line 4 = " + SignText[3]);
-		    				
-		    				// Setting the public value 
-		    				plugin.signText[0] = SignText[0];
-		    				plugin.signText[1] = SignText[1];
-		    				plugin.signText[2] = SignText[2];
-		    				plugin.signText[3] = SignText[3];
+		    				if (TotalText.length() > 60) sendMessage(sender, "To long to place on the sign, make it shorter");
+		    				plugin.SignTextFull = TotalText;
 		    				handled = true; 
 		    			} else {
 		    				sendMessage(sender, "You need to be an op to do this");

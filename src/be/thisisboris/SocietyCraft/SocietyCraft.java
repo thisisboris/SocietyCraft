@@ -217,11 +217,12 @@ public class SocietyCraft extends JavaPlugin {
     		BlockState state = signBlock.getState();
 			Sign sign = (Sign) state;
 				
-			// resetting the needed ligns
+			// Setting the lines
 			sign.setLine(0, signText[0]);
 			sign.setLine(1, signText[1]);
 			sign.setLine(2, signText[2]);
 			sign.setLine(3, signText[3]);
+			// nessecairy, if not sign text won't change
 			sign.update();
 			
     	}

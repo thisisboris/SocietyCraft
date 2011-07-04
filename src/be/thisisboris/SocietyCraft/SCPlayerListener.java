@@ -49,8 +49,11 @@ public class SCPlayerListener extends PlayerListener {
 		 if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
 				 if (plugin.RequestingEditSign){
 					 if (event.getPlayer().getItemInHand().getType() == Material.AIR){
-						 plugin.ChangeSign(event.getClickedBlock());
-						 plugin.RequestingEditSign = false;
+						 // checking if the player zho did the command is the player that right clicked a sign
+						 if (plugin.PlayerAction == event.getPlayer()){
+							 plugin.ChangeSign(event.getClickedBlock());
+							 plugin.RequestingEditSign = false;
+						 }
 					 } else {
 						 event.getPlayer().sendMessage("Rightclick with your hand to change the sign");
 					 }

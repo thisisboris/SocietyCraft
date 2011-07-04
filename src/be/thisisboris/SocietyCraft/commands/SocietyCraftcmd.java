@@ -165,7 +165,10 @@ public class SocietyCraftcmd implements CommandExecutor {
 		    					}
 		    				}
 		    				if (TotalText.length() > 60) sendMessage(sender, "To long to place on the sign, make it shorter");
-		    				plugin.SetSignText(TotalText);
+		    				else {
+		    					plugin.PlayerAction = getPlayer(sender);
+		    					plugin.SetSignText(TotalText);
+		    				}
 		    				handled = true; 
 		    			} else {
 		    				sendMessage(sender, "You need to be an op to do this");

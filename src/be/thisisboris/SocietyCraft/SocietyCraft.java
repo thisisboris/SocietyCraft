@@ -200,12 +200,15 @@ public class SocietyCraft extends JavaPlugin {
         debugees.clear();
         debugging = false;
     }
-    
-   public String SignTextFull = "";
-    // For changing a sign with the program
+    public String SignTextFull = "";
+   // For changing a sign with the program
     public void ChangeSign(Block block, String Text){
     	SignTextFull = Text;
     	ChangeSign(block);
+    }
+    // Settiing them both.
+    public void SetSignText(String string){
+    	String SignTextFull = string;
     }
     public void ChangeSign(Block block){
     	if (block.getType() == Material.SIGN || block.getType() == Material.SIGN_POST || block.getType() == Material.WALL_SIGN)
@@ -214,10 +217,12 @@ public class SocietyCraft extends JavaPlugin {
     			
     			// deviding text in to 4 rules;
     			 String[] signText = {"","","",""};
+    			 // Setting TempString, for easy change name of SignTextFull if nessecairy
+    			 String TempText = SignTextFull;
     			
     			// Editing Text
-    			int Lenght = SignTextFull.length();
-				int EndIndex = SignTextFull.length();
+    			int Lenght = TempText.length();
+				int EndIndex = TempText.length();
 				String TempLine1 = "";
 				String TempLine2 = "";
 				String TempLine3 = "";
@@ -225,19 +230,19 @@ public class SocietyCraft extends JavaPlugin {
 				
 				if (Lenght < 60){
 					if (Lenght <= 15){
-						TempLine1 = SignTextFull;
+						TempLine1 = TempText;
 					} else if (Lenght <= 30){
-						TempLine1 = SignTextFull.substring(0, 15);
-						TempLine2 = SignTextFull.substring(15,EndIndex);
+						TempLine1 = TempText.substring(0, 15);
+						TempLine2 = TempText.substring(15,EndIndex);
 					} else if (Lenght <= 45){
-						TempLine1 = SignTextFull.substring(0, 15);
-						TempLine2 = SignTextFull.substring(15,30);
-						TempLine3 = SignTextFull.substring(30,EndIndex);
+						TempLine1 = TempText.substring(0, 15);
+						TempLine2 = TempText.substring(15,30);
+						TempLine3 = TempText.substring(30,EndIndex);
 					} else {
-						TempLine1 = SignTextFull.substring(0, 15);
-						TempLine2 = SignTextFull.substring(15,30);
-						TempLine3 = SignTextFull.substring(30,45);
-						TempLine4 = SignTextFull.substring(45,EndIndex);
+						TempLine1 = TempText.substring(0, 15);
+						TempLine2 = TempText.substring(15,30);
+						TempLine3 = TempText.substring(30,45);
+						TempLine4 = TempText.substring(45,EndIndex);
 					}
 				}
 				// setting the lines

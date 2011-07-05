@@ -1,6 +1,7 @@
 package be.thisisboris.SocietyCraft.commands;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -146,7 +147,137 @@ public class SocietyCraftcmd implements CommandExecutor {
             			handled = true;
             		}
 	    		}
-    		} else if (is(args[0], "SetSignText")){
+    		} else if (is(args[0], "House")){
+	        	if (isPlayer(sender)){
+	        		if (args.length >= 2){
+	        			if (is(args[1],"buy")){
+	        				// player is trying to buy a house
+	        				Location loc = getPlayer(sender).getLocation();
+	        				/*
+	        				 * Player is trying to buy a house,
+	        				 * 
+	        				 * checklist:
+	        				 * 	- He is in a house that's buyable	
+	        				 * 	- he has the money for it
+	        				 * 	- He has the permissions
+	        				 * 		* he isn't an enemy of the town
+	        				 * 		* he isn't an enemy of the Nation
+	        				 * 		* Player that is selling the house doens't allow for him to buy
+	        				 * 	- Set the sign that defines the house with his name
+	        				 * 
+	        				 */
+	        				handled = true;
+	        			} else  if (is(args[1], "Sell")){
+	        				Location loc = getPlayer(sender).getLocation();
+	        				
+	        				
+	        				/*
+	        				 * Player is trying to sell the house
+	        				 * 
+	        				 * checklist:
+	        				 *	- he owes the house he's trying to sell
+	        				 */
+	        				handled = true;
+	        			} else if (is (args[1], "SetPrice")){
+	        				/*
+	        				 * Checklist:
+	        				 * 	- Pretty strait forward
+	        				 */
+	        				handled = true;
+	        			} else if (is (args[1], "SetOwner")){
+	        				Player player = getPlayer(sender);
+	        				/*
+	        				 * Checklist:
+	        				 * 	- if player is the owner
+	        				 * 	- if the other player is a member
+	        				 * 	- if the other player is online otherwise otherwise send message when he come's online
+	        				 * 
+	        				 */
+	        				handled = true;
+	        			} else if (is (args[1], "SetRent")){
+	        				Player player = getPlayer(sender);
+	        				/*
+	        				 * CheckList:
+	        				 * 	- check if he's the owner
+	        				 * 
+	        				 * 	Notes:
+	        				 * 	- setting by ID, or by standing in the house? 
+	        				 */
+	        				handled = true;
+	        			} else {
+	        				sendMessage(sender, "this is not a command, plzz try /sc help house for the availible commands");
+	        				handled = true;
+	        			}
+	        		} else {
+	        			sendMessage(sender, "This is not a command, plzz try /sc help house for the availible commands");
+	        			handled = true;
+	        		}
+	        	} else {
+	        		// command executed by terminal
+	        	}
+	        } else if (is(args[0], "Plot")){
+	        	if (isPlayer(sender)){
+	        		if (args.length >= 2){
+	        			if (is(args[1],"buy")){
+	        				// player is trying to buy a house
+	        				Location loc = getPlayer(sender).getLocation();
+	        				/*
+	        				 * Player is trying to buy a house,
+	        				 * 
+	        				 * checklist:
+	        				 * 	- He is in a plot that's buyable	
+	        				 * 	- he has the money for it
+	        				 * 	- He has the permissions
+	        				 * 		* he isn't an enemy of the town
+	        				 * 		* he isn't an enemy of the Nation
+	        				 * 		* Player that is selling the house doens't allow for him to buy
+	        				 * 	- Set the sign that defines the house with his name
+	        				 * 
+	        				 */
+	        				handled = true;
+	        			} else  if (is(args[1], "Sell")){
+	        				Location loc = getPlayer(sender).getLocation();
+	        				/*
+	        				 * Player is trying to sell the house
+	        				 * 
+	        				 * checklist:
+	        				 *	- he owes the plot he's trying to sell
+	        				 */
+	        				handled = true;
+	        			} else if (is (args[1], "SetOwner")){
+	        				Player player = getPlayer(sender);
+	        				/*
+	        				 * Checklist:
+	        				 * 	- if player is the owner
+	        				 * 	- if the other player is a member
+	        				 * 	- if the other player is online otherwise otherwise send message when he come's online
+	        				 * 
+	        				 */
+	        				handled = true;
+	        			} else if (is (args[1], "SetPrice")){
+	        				Player player = getPlayer(sender);
+	        				/*
+	        				 * CheckList:
+	        				 * 	- if he's the owner
+	        				 * 	- is the plot is for sale
+	        				 * 
+	        				 * 	Notes:
+	        				 * 	- setting by ID, or by standing in the house? 
+	        				 */
+	        				handled = true;
+	        			} else {
+	        				sendMessage(sender, "this is not a command, plzz try /sc help house for the availible commands");
+	        				handled = true;
+	        			}
+	        		} else {
+	        			sendMessage(sender, "This is not a command, plzz try /sc help house for the availible commands");
+	        			handled = true;
+	        		}
+	        	} else {
+	        		// command executed by terminal
+	        	}
+	        	
+        	} else if (is(args[0], "SetSignText")){
 	        	if (isPlayer(sender)){
 		        	if (args.length >= 2){
 		        		if (getPlayer(sender).isOp()){
@@ -178,25 +309,7 @@ public class SocietyCraftcmd implements CommandExecutor {
 		       		SCLogger.warning("Not a command for terminal.");
 		       		handled = true;
 		       	}
-	        }
-        	
-        	
-    		/*
-    		 * Since these basic commands display help pages, and we have a lot
-    		 * of help pages, we should check if there are any arguments behind
-    		 * the command. Which will tell the plugin what help page the user
-    		 * wants to see.
-    		 * 
-    		 * If the terminal executes this, different statistics will be displayed.
-    		 * For example:
-    		 * 
-    		 * /sc town will display help for a town to a user, but for the terminal this
-    		 * will return statistics about all towns there are in the world.
-    		 * 
-    		 * That's logic!
-    		 * 
-    		 */
-        	
+	        } 
         } else if (is(label, "SocietyAdmin") || is(label, "SA")) {
     	if (args == null || args.length == 0){
         		//------------------

@@ -52,7 +52,9 @@ public class SocietyCraftcmd implements CommandExecutor {
 	    			sendMessage(sender, colorizeText("/SC Nations: ", ChatColor.DARK_AQUA) + "Information about Nations");
 	    			sendMessage(sender, colorizeText("/SC NPC's: ", ChatColor.DARK_AQUA) + "Information about NPC's");
 	    			sendMessage(sender, colorizeText("/SC Jobs: ", ChatColor.DARK_AQUA) + "Information about jobs");
-	    			sendMessage(sender, colorizeText("/SC chat: ", ChatColor.DARK_AQUA) + "Information about different Chatchannels");
+	    			sendMessage(sender, colorizeText("/SC Chat: ", ChatColor.DARK_AQUA) + "Information about different Chatchels");
+	    			sendMessage(sender, colorizeText("/SC Plot: ", ChatColor.DARK_AQUA) + "Information about plot's");
+	    			sendMessage(sender, colorizeText("/SC House: ", ChatColor.DARK_AQUA) + "Information about houses");
 
 	    			handled = true;
 	    			
@@ -72,7 +74,6 @@ public class SocietyCraftcmd implements CommandExecutor {
 	    		}
     		}else if (is(args[0],"Help")){
 	    		if (args.length >= 2){
-	    			handled = true;
 	    			switch (HelpList.valueOf(args[1])){
 	    			case list:
 	    				
@@ -94,48 +95,57 @@ public class SocietyCraftcmd implements CommandExecutor {
 	    				// sending the player list
 	    		        if (isPlayer(sender)){
 	    		        	sendMessage(sender, listmessage);
-	    					handled = true;
+	    		        	handled = true;
+	    		        } else {
+	    		        	SCLogger.info(listmessage);
+	    		        	handled = true;
 	    		        }
 	    				
     				break;
 	    			
 	    			case plot:
-	    				//------------------
-	    				// Player
-	    				//------------------
 	    				if (isPlayer(sender)){
-	    					if (args.length == 3){
-	    						if (args[2].hashCode() == "kiwi".hashCode()){
-	            					message = prefix.concat("[HELP]");
-	                    			message = "You must be kiwi to know this command :P";
-	                    			sendMessage(sender, message);
-	            				}
-	            			}else {
-		            			message = prefix.concat("[HELP]");
-		            			message = "Here comes the helppage for the plots";
-		            			sendMessage(sender, message);
-	            			}
+    						message = prefix.concat("[HELP]");
+        	    			sendMessage(sender, message);
+        	    			
+        	    			sendMessage(sender, colorizeText("/SC help plot: ", ChatColor.DARK_AQUA) + "Shows this page.");
+        	    			sendMessage(sender, colorizeText("/SC help plot buy: ", ChatColor.DARK_AQUA) + "Buy's the plot where your standing in");
+        	    			sendMessage(sender, colorizeText("/SC help plot sell: ", ChatColor.DARK_AQUA) + "Sells the plot where your standing in");
+        	    			sendMessage(sender, colorizeText("/SC help plot Setowner <PlayerName>: ", ChatColor.DARK_AQUA) + "Set the owner of a plot");
+        	    			sendMessage(sender, colorizeText("/SC help plot SetPrice <Price>: ", ChatColor.DARK_AQUA) + "Set the price of the plot");
+        	    			
+        	    			handled = true;
+	            		} else {
+	            			// terminal info
 	            		}
 	    				break;
 	    			case house:
-	    				//------------------
-	    				// Player
-	    				//------------------
 	    				if (isPlayer(sender)){
-	            			message = prefix.concat("[HELP]");
-	            			message += "Here comes the helppage for the house";
-	            			sendMessage(sender, message);
+    						message = prefix.concat("[HELP]");
+        	    			sendMessage(sender, message);
+        	    			
+        	    			sendMessage(sender, colorizeText("/SC help house: ", ChatColor.DARK_AQUA) + "Shows this page.");
+        	    			sendMessage(sender, colorizeText("/SC help house buy: ", ChatColor.DARK_AQUA) + "Buy's the house where your standing in");
+        	    			sendMessage(sender, colorizeText("/SC help house sell: ", ChatColor.DARK_AQUA) + "Sells the house where your standing in");
+        	    			sendMessage(sender, colorizeText("/SC help house Setowner <PlayerName>: ", ChatColor.DARK_AQUA) + "Set the owner of a house");
+        	    			sendMessage(sender, colorizeText("/SC help house SetPrice <Price>: ", ChatColor.DARK_AQUA) + "Set the price of the house");
+        	    			sendMessage(sender, colorizeText("/SC help house SetRent <Price>: ", ChatColor.DARK_AQUA) + "Set the rent of the house");
+        	    			
+        	    			handled = true;
+	            		} else {
+	            			// terminal info
 	            		}
-	    				break;
-	   
+	    				break;	   
 	    			default:
 	    				// wrong command after help
 	    				if (isPlayer(sender)){
 	            			message = prefix.concat("[HELP]");
-	            			message = "Can't find help page, the following helppages excists: plot, house, resident, nation";
+	            			message = "Can't find help page, type /sc help for the availible help pages";
 	            			sendMessage(sender, message);
+	            			handled = true;
 	            		} else {
 	            			SCLogger.warning("not a registerd command.");
+	            			handled = true;
 	            		}
 	    				break;
 	    			}        		        		
@@ -184,16 +194,6 @@ public class SocietyCraftcmd implements CommandExecutor {
 	        				 * 	- Pretty strait forward
 	        				 */
 	        				handled = true;
-	        			} else if (is (args[1], "SetOwner")){
-	        				Player player = getPlayer(sender);
-	        				/*
-	        				 * Checklist:
-	        				 * 	- if player is the owner
-	        				 * 	- if the other player is a member
-	        				 * 	- if the other player is online otherwise otherwise send message when he come's online
-	        				 * 
-	        				 */
-	        				handled = true;
 	        			} else if (is (args[1], "SetRent")){
 	        				Player player = getPlayer(sender);
 	        				/*
@@ -202,6 +202,16 @@ public class SocietyCraftcmd implements CommandExecutor {
 	        				 * 
 	        				 * 	Notes:
 	        				 * 	- setting by ID, or by standing in the house? 
+	        				 */
+	        				handled = true;
+	        			} else if (is (args[1], "SetOwner")){
+	        				Player player = getPlayer(sender);
+	        				/*
+	        				 * Checklist:
+	        				 * 	- if player is the owner
+	        				 * 	- if the other player is a member
+	        				 * 	- if the other player is online otherwise otherwise send message when he come's online
+	        				 * 
 	        				 */
 	        				handled = true;
 	        			} else {
